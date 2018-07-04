@@ -1,5 +1,7 @@
-{% extends 'MarieLouvresBundle::information.html.twig'%}
+{% extends 'layout.html.twig'%}
 
+
+{% block reservation %}
         <!-- prénom  -->
                 <form name="booking" method="post" id="myBooking">  
                     <div class="">
@@ -55,3 +57,4 @@
                 </div>
 
                 <button type="button" class="btn btn-info" > <a href="{{ path ('paiement')}}">Paiement</button>
+{% endblock %}
