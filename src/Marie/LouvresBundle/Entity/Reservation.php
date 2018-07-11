@@ -24,9 +24,9 @@ class Reservation
     /**
      * @var int
      *
-     * @ORM\Column(name="Nombre_de_billet", type="integer")
+     * @ORM\Column(name="numberofticket", type="integer")
      */
-    private $nombreDeBillet;
+    private $numberofticket;
 
     /**
      * @var int
@@ -45,16 +45,16 @@ class Reservation
     /**
      * @var float
      *
-     * @ORM\Column(name="prix", type="float")
+     * @ORM\Column(name="price", type="float")
      */
-    private $prix;
+    private $price;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $nom;
+    private $name;
 
     /**
      * @var string
@@ -66,9 +66,9 @@ class Reservation
     /**
      * @var bool
      *
-     * @ORM\Column(name="paiement", type="boolean")
+     * @ORM\Column(name="payment", type="boolean")
      */
-    private $paiement;
+    private $payment;
 
 
     /**
@@ -82,27 +82,27 @@ class Reservation
     }
 
     /**
-     * Set nombreDeBillet
+     * Set numberofticket
      *
-     * @param integer $nombreDeBillet
+     * @param integer $numberofticket
      *
      * @return Reservation
      */
-    public function setNombreDeBillet($nombreDeBillet)
+    public function setNumberofticket($numberofticket)
     {
-        $this->nombreDeBillet = $nombreDeBillet;
+        $this->numberofticket = $numberofticket;
 
         return $this;
     }
 
     /**
-     * Get nombreDeBillet
+     * Get numberofticket
      *
      * @return int
      */
-    public function getNombreDeBillet()
+    public function getNumberofticket()
     {
-        return $this->nombreDeBillet;
+        return $this->numberofticket;
     }
 
     /**
@@ -154,51 +154,51 @@ class Reservation
     }
 
     /**
-     * Set prix
+     * Set price
      *
-     * @param float $prix
+     * @param float $price
      *
      * @return Reservation
      */
-    public function setPrix($prix)
+    public function setPrice($price)
     {
-        $this->prix = $prix;
+        $this->price = $price;
 
         return $this;
     }
 
     /**
-     * Get prix
+     * Get price
      *
      * @return float
      */
-    public function getPrix()
+    public function getPrice()
     {
-        return $this->prix;
+        return $this->price;
     }
 
     /**
-     * Set nom
+     * Set name
      *
-     * @param string $nom
+     * @param string $name
      *
      * @return Reservation
      */
-    public function setNom($nom)
+    public function setName($name)
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get nom
+     * Get name
      *
      * @return string
      */
-    public function getNom()
+    public function getName()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**
@@ -226,27 +226,27 @@ class Reservation
     }
 
     /**
-     * Set paiement
+     * Set payment
      *
-     * @param boolean $paiement
+     * @param boolean $payment
      *
      * @return Reservation
      */
-    public function setPaiement($paiement)
+    public function setPayment($payment)
     {
-        $this->paiement = $paiement;
+        $this->payment = $payment;
 
         return $this;
     }
 
     /**
-     * Get paiement
+     * Get payment
      *
      * @return bool
      */
-    public function getPaiement()
+    public function getPayment()
     {
-        return $this->paiement;
+        return $this->payment;
     }
 }
 
