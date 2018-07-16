@@ -28,13 +28,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="thumbnail text-center">
-                <img src="images/louvre2.jpg" alt="louvre coucher" class="img-responsive">
+                <img src="{{ asset ('images/louvre2.jpg')}}" alt="louvre coucher" class="img-responsive">
                 <div class="caption col-lg-12">
                     <p id="welcome-text">Billetterie du musée du Louvre</p>
                 </div> 
             </div>
         </div>
-        <div class="text-center" style="display: flex; flex-direction: column;justify-content: center;align-items: center">
+        <div class="text-center" id="content">
             
             {% block information %}{% endblock %}
             
