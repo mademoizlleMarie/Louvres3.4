@@ -212,7 +212,7 @@ class Reservation
      *
      * @param string $email
      *
-     * @return reservation
+     * @return Reservation
      */
     public function setEmail($email)
     {
@@ -236,7 +236,7 @@ class Reservation
      *
      * @param boolean $payment
      *
-     * @return reservation
+     * @return Reservation
      */
     public function setPayment($payment)
     {
@@ -254,28 +254,5 @@ class Reservation
     {
         return $this->payment;
     }
-
-    /**
-     * Set ticket.
-     *
-     * @param \Marie\LouvresBundle\Entity\Ticket $ticket
-     *
-     * @return reservation
-     */
-    public function setTicket(\Marie\LouvresBundle\Entity\Ticket $ticket)
-    {
-        $this->ticket = $ticket;
-
-        return $this;
-    }
-
-    /**
-     * Get ticket.
-     *
-     * @return \Marie\LouvresBundle\Entity\Ticket
-     */
-    public function getTicket()
-    {
-        return $this->ticket;
-    }
 }
+

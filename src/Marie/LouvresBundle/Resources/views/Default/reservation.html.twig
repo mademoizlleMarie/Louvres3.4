@@ -1,5 +1,12 @@
 {% extends 'layout.html.twig'%}
 
+{% block head %}
+
+    <title> Réservation </title>
+
+{% endblock %}
+
+
 
 {% block reservation %}
         <!-- prénom  -->
@@ -56,5 +63,5 @@
                     </select>
                 </div>
 
-                <button type="button" class="btn btn-info" > <a href="{{ path ('paiement')}}">Paiement</button>
+                <button type="button" class="btn btn-info" > <a href="{{ path('paiement') }}">Paiement</button>
 {% endblock %}
