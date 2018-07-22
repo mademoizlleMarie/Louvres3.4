@@ -26,6 +26,7 @@
    </div>
 {% endblock %}
 
+
 {% block formulaire %}
     <div class="card bg-secondary border-secondary">
         <!-- choix du jour  -->
@@ -46,53 +47,10 @@
                 </script>
             </div>
         </form>
-        <!-- nombre de billet  -->
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Nombre de Billet Adulte </label>
-        </div>
-        <select class="custom-select" id="inputGroupSelect01">
-            <option selected>0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-        </select>
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Nombre de Billet Enfant</label>
-        </div>
-        <select class="custom-select" id="inputGroupSelect01">
-            <option selected>0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-        </select>
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Nombre de Billet Senior</label>
-        </div>
-        <select class="custom-select" id="inputGroupSelect01">
-            <option selected>0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-        </select>
-        <!--si activé faire apparaitre la mention "que la personne devra présenter un justificatif" -->
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Nombre de Billet tarif Réduit *</label>
-        </div>
-        <select class="custom-select" id="inputGroupSelect01">
-            <option selected>0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-        </select>
 
-        <!-- choix du billet  -->
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Type de Billet</label>
+        <div class="well">
+            {{ form (form) }}
         </div>
-        <select class="custom-select" id="inputGroupSelect01">
-            <option value="1">Billet journée</option>
-            <option value="1">Billet demi-journée</option>
-        </select>
 
         <!--valider le nombre de billet  -->
         <button type="button" class="btn btn-success" > <a href="{{ path('reservation') }}"> suivant </a></button>

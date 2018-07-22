@@ -5,19 +5,13 @@ namespace Marie\LouvresBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Reservation
+ * reservation
  *
  * @ORM\Table(name="reservation")
  * @ORM\Entity(repositoryClass="Marie\LouvresBundle\Repository\ReservationRepository")
   */
-class Reservation
+class reservation
 {
-    /**
-     * @ORM\ManyToOne(targetEntity="Marie\LouvresBundle\Entity\Ticket")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $ticket;
-
     /**
      * @var int
      *
@@ -92,7 +86,7 @@ class Reservation
      *
      * @param integer $numberofticket
      *
-     * @return Reservation
+     * @return reservation
      */
     public function setNumberofticket($numberofticket)
     {
@@ -116,7 +110,7 @@ class Reservation
      *
      * @param integer $code
      *
-     * @return Reservation
+     * @return reservation
      */
     public function setCode($code)
     {
@@ -140,7 +134,7 @@ class Reservation
      *
      * @param \DateTime $date
      *
-     * @return Reservation
+     * @return reservation
      */
     public function setDate($date)
     {
@@ -164,7 +158,7 @@ class Reservation
      *
      * @param float $price
      *
-     * @return Reservation
+     * @return reservation
      */
     public function setPrice($price)
     {
@@ -188,7 +182,7 @@ class Reservation
      *
      * @param string $name
      *
-     * @return Reservation
+     * @return reservation
      */
     public function setName($name)
     {
@@ -253,29 +247,5 @@ class Reservation
     public function getPayment()
     {
         return $this->payment;
-    }
-
-    /**
-     * Set ticket.
-     *
-     * @param \Marie\LouvresBundle\Entity\Ticket $ticket
-     *
-     * @return reservation
-     */
-    public function setTicket(\Marie\LouvresBundle\Entity\Ticket $ticket)
-    {
-        $this->ticket = $ticket;
-
-        return $this;
-    }
-
-    /**
-     * Get ticket.
-     *
-     * @return \Marie\LouvresBundle\Entity\Ticket
-     */
-    public function getTicket()
-    {
-        return $this->ticket;
     }
 }

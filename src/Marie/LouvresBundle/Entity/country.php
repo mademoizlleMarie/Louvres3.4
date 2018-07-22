@@ -12,11 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
   */
 class country
 {
-    /**
-     * @ORM\ManyToOne(targetEntity="Marie\LouvresBundle\Entity\Ticket")
-     * @ORM\JoinColumn(nullable=false)
-     */
-     private $ticket;
 
     /**
      * @var int
@@ -67,29 +62,5 @@ class country
     public function getCountry()
     {
         return $this->country;
-    }
-
-    /**
-     * Set ticket.
-     *
-     * @param \Marie\LouvresBundle\Entity\Ticket $ticket
-     *
-     * @return country
-     */
-    public function setTicket(\Marie\LouvresBundle\Entity\Ticket $ticket)
-    {
-        $this->ticket = $ticket;
-
-        return $this;
-    }
-
-    /**
-     * Get ticket.
-     *
-     * @return \Marie\LouvresBundle\Entity\Ticket
-     */
-    public function getTicket()
-    {
-        return $this->ticket;
     }
 }
