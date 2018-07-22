@@ -12,17 +12,17 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('@MarieLouvres/Default/information.html.twig');
+        return $this->render('@MarieLouvres/Default/accueil.html.twig');
     }
     /**
-     * @Route("/", name="reservation")
+     * @Route("/reservation", name="reservation")
      */
     public function reservationAction()
     {
         return $this->render('@MarieLouvres/Default/reservation.html.twig');
     }
     /**
-     * @Route("/", name="paiement")
+     * @Route("/paiement", name="paiement")
      */
     public function paiementAction()
     {

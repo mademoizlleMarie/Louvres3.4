@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="ticket")
  * @ORM\Entity(repositoryClass="Marie\LouvresBundle\Repository\ticketRepository")
+
  */
 class ticket
 {
@@ -24,30 +25,30 @@ class ticket
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $nom;
+    private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255)
+     * @ORM\Column(name="firstname", type="string", length=255)
      */
-    private $prenom;
+    private $firstname;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_de_naissance", type="datetime")
+     * @ORM\Column(name="dateofbirth", type="datetime")
      */
-    private $dateDeNaissance;
+    private $dateofbirth;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="reduit", type="boolean")
+     * @ORM\Column(name="reduced", type="boolean")
      */
-    private $reduit;
+    private $reduced;
 
     /**
      * @var string
@@ -68,99 +69,99 @@ class ticket
     }
 
     /**
-     * Set nom
+     * Set name
      *
-     * @param string $nom
+     * @param string $name
      *
      * @return ticket
      */
-    public function setNom($nom)
+    public function setName($name)
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get nom
+     * Get name
      *
      * @return string
      */
-    public function getNom()
+    public function getName()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**
-     * Set prenom
+     * Set firstname
      *
-     * @param string $prenom
+     * @param string $firstname
      *
      * @return ticket
      */
-    public function setPrenom($prenom)
+    public function setFirstname($firstname)
     {
-        $this->prenom = $prenom;
+        $this->firstname = $firstname;
 
         return $this;
     }
 
     /**
-     * Get prenom
+     * Get firstname
      *
      * @return string
      */
-    public function getPrenom()
+    public function getFirstname()
     {
-        return $this->prenom;
+        return $this->firstname;
     }
 
     /**
-     * Set dateDeNaissance
+     * Set dateofbirth
      *
-     * @param \DateTime $dateDeNaissance
+     * @param \DateTime $dateofbirth
      *
      * @return ticket
      */
-    public function setDateDeNaissance($dateDeNaissance)
+    public function setDateofbirth($dateofbirth)
     {
-        $this->dateDeNaissance = $dateDeNaissance;
+        $this->dateofbirth = $dateofbirth;
 
         return $this;
     }
 
     /**
-     * Get dateDeNaissance
+     * Get dateofbirth
      *
      * @return \DateTime
      */
-    public function getDateDeNaissance()
+    public function getDateofbirth()
     {
-        return $this->dateDeNaissance;
+        return $this->dateofbirth;
     }
 
     /**
-     * Set reduit
+     * Set reduced
      *
-     * @param boolean $reduit
+     * @param boolean $reduced
      *
      * @return ticket
      */
-    public function setReduit($reduit)
+    public function setReduced($reduced)
     {
-        $this->reduit = $reduit;
+        $this->reduced = $reduced;
 
         return $this;
     }
 
     /**
-     * Get reduit
+     * Get reduced
      *
      * @return bool
      */
-    public function getReduit()
+    public function getReduced()
     {
-        return $this->reduit;
+        return $this->reduced;
     }
 
     /**
