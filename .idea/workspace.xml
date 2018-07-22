@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a8d184f-5f4c-42da-bb57-22dcc7002631" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Louvre3.4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Louvre3.4.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Marie/LouvresBundle/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Marie/LouvresBundle/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/Reservation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/Reservation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/country.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/country.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/ticket.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/ticket.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Marie/LouvresBundle/Resources/views/Default/information.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Marie/LouvresBundle/Resources/views/Default/accueil.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Marie/LouvresBundle/Resources/views/Default/paiement.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Marie/LouvresBundle/Resources/views/Default/paiement.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Marie/LouvresBundle/Resources/views/Default/reservation.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Marie/LouvresBundle/Resources/views/Default/reservation.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,10 +17,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Reservation.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Reservation.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/Reservation.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
+            <state relative-caret-position="4539">
               <caret line="267" selection-start-line="267" selection-end-line="267" />
             </state>
           </provider>
@@ -45,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="layout.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/layout.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+            <state relative-caret-position="403">
+              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
             </state>
           </provider>
         </entry>
@@ -102,8 +92,8 @@
         <option value="$PROJECT_DIR$/src/Marie/LouvresBundle/Resources/views/Default/reservation.html.twig" />
         <option value="$PROJECT_DIR$/src/Marie/LouvresBundle/Resources/views/Default/paiement.html.twig" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
-        <option value="$PROJECT_DIR$/app/Resources/views/layout.html.twig" />
         <option value="$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/Reservation.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/layout.html.twig" />
       </list>
     </option>
   </component>
@@ -358,16 +348,19 @@
       <workItem from="1531683896606" duration="796000" />
       <workItem from="1531685398145" duration="4265000" />
       <workItem from="1532024471252" duration="599000" />
+      <workItem from="1532245229225" duration="564000" />
+      <workItem from="1532245889542" duration="157000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40728000" />
+    <option name="totallyTimeSpent" value="41449000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14128843" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19692533" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.3286385" />
@@ -526,13 +519,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/layout.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Marie/LouvresBundle/Resources/views/Default/accueil.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1632">
@@ -557,8 +543,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/Reservation.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
+        <state relative-caret-position="4539">
           <caret line="267" selection-start-line="267" selection-end-line="267" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
         </state>
       </provider>
     </entry>
