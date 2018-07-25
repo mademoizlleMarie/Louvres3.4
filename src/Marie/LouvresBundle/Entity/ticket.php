@@ -14,18 +14,6 @@ use Doctrine\ORM\Mapping as ORM;
 class ticket
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Marie\LouvresBundle\Entity\country")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $country;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Marie\LouvresBundle\Entity\reservation")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $reservation;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -200,51 +188,4 @@ class ticket
         return $this->description;
     }
 
-    /**
-     * Set country
-     *
-     * @param \Marie\LouvresBundle\Entity\country $country
-     *
-     * @return ticket
-     */
-    public function setCountry(\Marie\LouvresBundle\Entity\country $country)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return \Marie\LouvresBundle\Entity\country
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
-     * Set reservation
-     *
-     * @param \Marie\LouvresBundle\Entity\reservation $reservation
-     *
-     * @return ticket
-     */
-    public function setReservation(\Marie\LouvresBundle\Entity\reservation $reservation)
-    {
-        $this->reservation = $reservation;
-
-        return $this;
-    }
-
-    /**
-     * Get reservation
-     *
-     * @return \Marie\LouvresBundle\Entity\reservation
-     */
-    public function getReservation()
-    {
-        return $this->reservation;
-    }
 }
