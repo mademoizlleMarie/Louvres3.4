@@ -2,7 +2,7 @@
 
 {% block head %}
 
-    <title> Réservation </title>
+    <title> {{ "Booking" |trans }} </title>
 
 {% endblock %}
 
@@ -69,5 +69,5 @@
         </select>
     </div>
 
-    <button type="button" class="btn btn-info" > <a href="{{ path('paiement') }}">Paiement</button>
+    <button type="button" class="btn btn-info" > <a href="{{ path('paiement') }}">{{ "Payment " |trans }}</button>
 {% endblock %}

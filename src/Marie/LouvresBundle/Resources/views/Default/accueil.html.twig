@@ -10,9 +10,9 @@
 	<div> 
 	    <h2> Information </h2>
         <p>
-           {{ 'open'|trans}}:
+           {{ "The louvre museum is open every day except"| trans }}:
             <br>
-            les mardis, dimanches et jours fériés.
+            {{ "Tuesdays, Sundays and holidays" | trans }}.
         </p>
 	</div>
 {% endblock %}
@@ -20,8 +20,8 @@
 {% block infostock %}
    <div>
        <p>
-           <strong> Info stock: </strong>
-           il reste suffisament de billets pour la date choisie.
+           <strong> {{ "Stock info" | trans }}: </strong>
+           {{ "there are still enough tickets for the chosen date" | trans }}.
        </p>
    </div>
 {% endblock %}
@@ -32,7 +32,7 @@
         <!-- choix du jour  -->
         <form name="booking" method="post" id="myBooking">
             <div class="card-title">
-                <label for="choiceBookingDate">Jour de la visite</label>
+                <label for="choiceBookingDate">{{ "Day of the visit" | trans }}</label>
                 <input id="datepicker" width="276" id="choiceBookingDate" />
 
                 <script>
@@ -53,7 +53,7 @@
         </div>
 
         <!--valider le nombre de billet  -->
-        <button type="button" class="btn btn-success" > <a href="{{ path('reservation') }}"> suivant </a></button>
+        <button type="button" class="btn btn-success" > <a href="{{ path('reservation') }}"> {{ "next" | trans }} </a></button>
     </div>
 {% endblock %}
 
