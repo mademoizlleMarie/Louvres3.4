@@ -13,18 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class reservation
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Marie\LouvresBundle\Entity\country")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $country;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Marie\LouvresBundle\Entity\ticket")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $ticket;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -259,53 +247,5 @@ class reservation
     public function getPayment()
     {
         return $this->payment;
-    }
-
-    /**
-     * Set country
-     *
-     * @param \Marie\LouvresBundle\Entity\country $country
-     *
-     * @return reservation
-     */
-    public function setCountry(\Marie\LouvresBundle\Entity\country $country)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return \Marie\LouvresBundle\Entity\country
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
-     * Set ticket
-     *
-     * @param \Marie\LouvresBundle\Entity\ticket $ticket
-     *
-     * @return reservation
-     */
-    public function setTicket(\Marie\LouvresBundle\Entity\ticket $ticket)
-    {
-        $this->ticket = $ticket;
-
-        return $this;
-    }
-
-    /**
-     * Get ticket
-     *
-     * @return \Marie\LouvresBundle\Entity\ticket
-     */
-    public function getTicket()
-    {
-        return $this->ticket;
     }
 }

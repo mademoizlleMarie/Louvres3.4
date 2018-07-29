@@ -27,33 +27,68 @@
 {% endblock %}
 
 
-{% block formulaire %}
+{% block accueil %}
     <div class="card bg-secondary border-secondary">
-        <!-- choix du jour  -->
-        <form name="booking" method="post" id="myBooking">
-            <div class="card-title">
-                <label for="choiceBookingDate">{{ "Day of the visit" | trans }}</label>
-                <input id="datepicker" width="276" id="choiceBookingDate" />
-
-                <script>
-                    $('#datepicker').datepicker({
-
-                        todayHighlight: true,
-                        disableDaysOfWeek: [2, 6],
-                        disableDates: [121, 305, 359],
-                        uiLibrary: 'bootstrap4',
-
-                    });
-                </script>
-            </div>
-        </form>
-
         <div class="well">
-            {{ form (form) }}
+
+            {{ form_start(form,{'attr':{'class':'form-horizontal'}}) }}
+
+            {# Les erreurs générales du formulaire. #}
+            {{ form_errors(form) }}
+
+            {# Génération manuelle et éclatée : #}
+            {# Date : #}
+            <div class="form-group">
+                {# Génération du label. #}
+                {{ form_label(form.date, "what date would you like to come", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+
+                {# Affichage des erreurs pour ce champ précis. #}
+                {{ form_errors(form.date) }}
+
+                <div class="col-sm-10">
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.date, {'attr':{'class':'js-datepicker'}}) }}
+                </div>
+            </div>
+
+            {# Nombre de visiteur : #}
+            <div class="form-group">
+                {# Génération du label. #}
+                {{ form_label(form.numberofticket, "Please enter the number of visitors", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+
+                {# Affichage des erreurs pour ce champ précis. #}
+                {{ form_errors(form.numberofticket) }}
+
+                <div class="col-sm-10">
+                    {# Génération de l'input. #}
+                    {{ form_widget(form.numberofticket, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+
+            {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+
+            {# Génération automatique des champs pas encore écrits.
+               Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+               et tous les champs cachés (type « hidden »). #}
+            {{ form_rest(form) }}
+
+            {# Fermeture de la balise <form> du formulaire HTML #}
+            {{ form_end(form) }}
         </div>
 
-        <!--valider le nombre de billet  -->
-        <button type="button" class="btn btn-success" > <a href="{{ path('reservation') }}"> {{ "next" | trans }} </a></button>
+        <script>
+            $(document).ready(function() {
+                $('.js-datepicker').datepicker({
+                    format: 'dd-mm-yyyy', // ne fonctionne pas
+                    todayHighlight: true,
+                    disableDaysOfWeek: [2, 6],
+                    disableDates: [121, 305, 359],
+                    uiLibrary: 'bootstrap4',
+                });
+            });
+        </script>
+
     </div>
 {% endblock %}
 

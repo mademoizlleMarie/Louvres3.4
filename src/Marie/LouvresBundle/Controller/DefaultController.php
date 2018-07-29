@@ -4,69 +4,88 @@ namespace Marie\LouvresBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Marie\LouvresBundle\Entity\ticket;
 use Marie\LouvresBundle\Entity\reservation;
-use Marie\LouvresBundle\Entity\country;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Marie\LouvresBundle\Entity\ticket;
+use Marie\LouvresBundle\Form\reservationType;
+use Symfony\Component\HttpFoundation\Request;
+
+
+
 
 class DefaultController extends Controller
 {
     /**
      * @Route("/", name="accueil")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        // On crée un objet Advert
-        $ticket = new ticket();
 
-        // On crée le FormBuilder grâce au service form factory
-        $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $ticket);
+        // On crée un objet
+        $reservation = new reservation();
+        $reservation->setDate(new\Datetime());
+        $form = $this->get('form.factory')->create(reservationType::class,$reservation);
+        // cela peut être raccourci de cette facon : $form = $this->create(reservationType::class,$reservation);
 
-        // On ajoute les champs de l'entité que l'on veut à notre formulaire
-        $formBuilder
-            //->add('date',          dateType::class) cela vient de l'entité réservation
-            ->add('name',            TextType::class)
-            ->add('firstname',       TextType::class)
-            ->add('dateofbirth',     DateType::class)
-            ->add('reduced',         CheckboxType::class)
-            ->add('description',     ChoiceType::class, array('choices' => array('day ticket' => true, 'half day ticket' => false)))
 
-        ;
-        // À partir du formBuilder, on génère le formulaire
-        $form = $formBuilder->getForm();
+        // Si la requête est en POST
+        if ($request->isMethod('POST')) {
+            // On fait le lien Requête <-> Formulaire
+            // À partir de maintenant, la variable $reservation contient les valeurs entrées dans le formulaire par le visiteur
+            $form->handleRequest($request);
 
-        // On passe la méthode createView() du formulaire à la vue
-        // afin qu'elle puisse afficher le formulaire toute seule
+            // On vérifie que les valeurs entrées sont correctes
+            if ($form->isValid()) {
+                // On enregistre notre objet $reservation dans la base de données, par exemple
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($reservation);
+                $em->flush();
+
+                // $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+
+                // On redirige vers la page de réservation
+                return $this->render('@MarieLouvres/Default/reservation.html.twig', array(
+                    'form' => $form->createView(),));
+            }
+        }
+
+        // À ce stade, le formulaire n'est pas valide car :
+        // - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
+        // - Soit la requête est de type POST, mais le formulaire contient des valeurs invalides, donc on l'affiche de nouveau
         return $this->render('@MarieLouvres/Default/accueil.html.twig', array(
-            'form' => $form->createView(),
-        ));
+            'form' => $form->createView(),));
     }
+
+
 
     /**
      * @Route("/reservation", name="reservation")
      */
     public function reservationAction()
     {
-        $ticket = new ticket();
+        $reservation = new reservation();
+        $form = $this->get('form.factory')->create(reservationType::class,$reservation);
 
-        $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $ticket);
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
 
-        $formBuilder
-            ->add('name',            TextType::class)
-            ->add('firstname',       TextType::class)
-           // ->add('country',       TextType::class)
-            ->add('dateofbirth',     DateType::class)
-        ;
-        $form = $formBuilder->getForm();
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($reservation);
+                $em->flush();
 
+                return $this->render('@MarieLouvres/Default/paiement.html.twig', array(
+                    'form' => $form->createView(),));
+            }
+        }
         return $this->render('@MarieLouvres/Default/reservation.html.twig', array(
             'form' => $form->createView(),
         ));
-    }
+     }
+
+
+
+
+
     /**
      * @Route("/paiement", name="paiement")
      */
