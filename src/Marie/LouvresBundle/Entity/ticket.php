@@ -14,8 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
 class ticket
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Marie\LouvresBundle\Entity\reservation")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="Marie\LouvresBundle\Entity\reservation", inversedBy="tickets")
+     * @ORM\JoinColumn(name="reservartion_id", referencedColumnName="id")
      */
     private $reservation;
 

@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
   */
 class reservation
 {
+    // l'entité reservation porte la relation One (reservation) to Many (tickets) afin de permettre d'avoir un tableau d'objet de ticket
+    /**
+     * @ORM\OneToMany(targetEntity="Marie\LouvresBundle\Entity\ticket", mappedBy="reservation")
+    */
+    private $tickets;
+
     /**
      * @var int
      *
@@ -247,5 +253,30 @@ class reservation
     public function getPayment()
     {
         return $this->payment;
+    }
+
+    /**
+     * Add ticket
+     *
+     * @param \Marie\LouvresBundle\Entity\ticket $ticket
+     *
+     * @return reservation
+     */
+    public function addTicket(\Marie\LouvresBundle\Entity\ticket $ticket)
+    {
+        $this->tickets[] = $ticket;
+        $ticket->setReservation($this);
+
+        return $this;
+    }
+
+    /**
+     * Get tickets
+     *
+     * @return array
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
     }
 }

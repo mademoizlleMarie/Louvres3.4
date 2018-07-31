@@ -6,24 +6,29 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 
-class reservationAccueilType extends AbstractType
+class reservationTicketType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->remove('code');
-        $builder->remove('price');
-        $builder->remove('name');
-        $builder->remove('email');
-        $builder->remove('payment');
-        $builder->remove('ticket');
+        $builder-> add('ticket');
     }
 
     public function getParent()
     {
-        return reservationType::class;
+        return reservationType::class
     }
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'marie_louvresbundle_reservation';
+    }
+
+
 }

@@ -13,7 +13,7 @@ class ticketType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('firstname')->add('dateofbirth')->add('reduced')->add('description');
+        $builder->add('name')->add('firstname')->add('dateofbirth')->add('reduced')->add('description')->add('reservation');
     }/**
      * {@inheritdoc}
      */

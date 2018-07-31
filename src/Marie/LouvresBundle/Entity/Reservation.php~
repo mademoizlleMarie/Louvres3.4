@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
   */
 class reservation
 {
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Marie\LouvresBundle\Entity\ticket")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $ticket;
     /**
      * @var int
      *
