@@ -4,11 +4,7 @@
     <list default="true" id="5bbd5f4e-43c7-41b9-bb67-044643f8f13b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/reservation.php" afterPath="$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/reservation.php" />
-      <change beforePath="$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/ticket.php" afterPath="$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/ticket.php" />
-      <change beforePath="$PROJECT_DIR$/src/Marie/LouvresBundle/Form/reservationTicketType.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Marie/LouvresBundle/Form/reservationType.php" afterPath="$PROJECT_DIR$/src/Marie/LouvresBundle/Form/reservationType.php" />
       <change beforePath="$PROJECT_DIR$/src/Marie/LouvresBundle/Form/ticketType.php" afterPath="$PROJECT_DIR$/src/Marie/LouvresBundle/Form/ticketType.php" />
-      <change beforePath="$PROJECT_DIR$/src/Marie/LouvresBundle/Resources/views/Default/reservation.html.twig" afterPath="$PROJECT_DIR$/src/Marie/LouvresBundle/Resources/views/Default/reservation.html.twig" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
     <ignored path="$PROJECT_DIR$/vendor/doctrine/annotations/" />
@@ -71,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ticketType.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ticketType.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Marie/LouvresBundle/Form/ticketType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="25" column="144" lean-forward="false" selection-start-line="25" selection-start-column="144" selection-end-line="25" selection-end-column="144" />
+            <state relative-caret-position="272">
+              <caret line="16" column="20" lean-forward="true" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
               <folding>
                 <element signature="e#44#84#0#PHP" expanded="true" />
               </folding>
@@ -86,8 +82,8 @@
       <file leaf-file-name="reservation.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Marie/LouvresBundle/Resources/views/Default/reservation.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="28" selection-end-column="76" />
+            <state relative-caret-position="191">
+              <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -96,8 +92,8 @@
       <file leaf-file-name="reservation.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/reservation.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="21" column="7" lean-forward="false" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+            <state relative-caret-position="1568">
+              <caret line="104" column="5" lean-forward="true" selection-start-line="104" selection-start-column="5" selection-end-line="104" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -115,11 +111,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="reservationType.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="reservationType.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Marie/LouvresBundle/Form/reservationType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="27" column="45" lean-forward="true" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+            <state relative-caret-position="374">
+              <caret line="28" column="43" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
               <folding>
                 <element signature="e#44#84#0#PHP" expanded="true" />
               </folding>
@@ -156,10 +152,10 @@
         <option value="$PROJECT_DIR$/src/Marie/LouvresBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/src/Marie/LouvresBundle/Form/reservationTicketType.php" />
         <option value="$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/ticket.php" />
-        <option value="$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/reservation.php" />
         <option value="$PROJECT_DIR$/src/Marie/LouvresBundle/Resources/views/Default/reservation.html.twig" />
-        <option value="$PROJECT_DIR$/src/Marie/LouvresBundle/Form/ticketType.php" />
         <option value="$PROJECT_DIR$/src/Marie/LouvresBundle/Form/reservationType.php" />
+        <option value="$PROJECT_DIR$/src/Marie/LouvresBundle/Form/ticketType.php" />
+        <option value="$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/reservation.php" />
       </list>
     </option>
   </component>
@@ -244,32 +240,6 @@
               <item name="Louvre3.4" type="b2602c69:ProjectViewProjectNode" />
               <item name="Louvre3.4" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Louvre3.4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Louvre3.4" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Louvre3.4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Louvre3.4" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Louvre3.4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Louvre3.4" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="translations" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Louvre3.4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Louvre3.4" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Louvre3.4" type="b2602c69:ProjectViewProjectNode" />
@@ -395,12 +365,12 @@
       <workItem from="1532286237842" duration="20961000" />
       <workItem from="1532523411504" duration="6764000" />
       <workItem from="1532862200227" duration="33252000" />
-      <workItem from="1533471671528" duration="18915000" />
+      <workItem from="1533471671528" duration="21049000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79892000" />
+    <option name="totallyTimeSpent" value="82026000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -765,18 +735,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Marie/LouvresBundle/Resources/views/Default/reservation.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/Marie/LouvresBundle/Form/reservationType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="28" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Marie/LouvresBundle/Form/ticketType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="25" column="144" lean-forward="false" selection-start-line="25" selection-start-column="144" selection-end-line="25" selection-end-column="144" />
+        <state relative-caret-position="374">
+          <caret line="28" column="43" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
           <folding>
             <element signature="e#44#84#0#PHP" expanded="true" />
           </folding>
@@ -785,16 +747,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Marie/LouvresBundle/Entity/reservation.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="21" column="7" lean-forward="false" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+        <state relative-caret-position="1568">
+          <caret line="104" column="5" lean-forward="true" selection-start-line="104" selection-start-column="5" selection-end-line="104" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Marie/LouvresBundle/Form/reservationType.php">
+    <entry file="file://$PROJECT_DIR$/src/Marie/LouvresBundle/Resources/views/Default/reservation.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="27" column="45" lean-forward="true" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+        <state relative-caret-position="191">
+          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Marie/LouvresBundle/Form/ticketType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="20" lean-forward="true" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
           <folding>
             <element signature="e#44#84#0#PHP" expanded="true" />
           </folding>

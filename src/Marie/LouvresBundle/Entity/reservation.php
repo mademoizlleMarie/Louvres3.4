@@ -31,13 +31,6 @@ class reservation
     /**
      * @var int
      *
-     * @ORM\Column(name="numberofticket", type="integer")
-     */
-    private $numberofticket;
-
-    /**
-     * @var int
-     *
      * @ORM\Column(name="code", type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -95,30 +88,6 @@ class reservation
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set numberofticket
-     *
-     * @param integer $numberofticket
-     *
-     * @return reservation
-     */
-    public function setNumberofticket($numberofticket)
-    {
-        $this->numberofticket = $numberofticket;
-
-        return $this;
-    }
-
-    /**
-     * Get numberofticket
-     *
-     * @return int
-     */
-    public function getNumberofticket()
-    {
-        return $this->numberofticket;
     }
 
     /**

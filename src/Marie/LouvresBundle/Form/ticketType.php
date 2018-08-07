@@ -22,7 +22,7 @@ class ticketType extends AbstractType
             ->add('name', TextType::class)
             ->add('firstname', TextType::class)
             ->add('dateofbirth', DateType::class)
-            ->add('reduced', CheckboxType::class)
+            ->add('reduced', CheckboxType::class,array('required' => false))
             ->add('description', ChoiceType::class, array('choices'=> array('day ticket' =>'day ticket','half day ticket' =>'half day ticket')));
 
     }
