@@ -2,6 +2,7 @@
 
 namespace Marie\LouvresBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,14 +10,14 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="reservation")
  * @ORM\Entity(repositoryClass="Marie\LouvresBundle\Repository\ReservationRepository")
-  */
+ */
 class reservation
 {
     // l'entité reservation porte la relation One (reservation) to Many (tickets) afin de permettre d'avoir un tableau d'objet de ticket
     /**
      * @ORM\OneToMany(targetEntity="Marie\LouvresBundle\Entity\ticket", mappedBy="reservation")
     */
-    private $tickets;
+    private $tickets; // une réservation est lié à plusieurs tickets
 
     /**
      * @var int
@@ -82,6 +83,14 @@ class reservation
      *
      * @return int
      */
+
+    public function __construct()
+    {
+        $this->tickets = new ArrayCollection();
+        $this->date = new \Datetime();
+    }
+
+
     public function getId()
     {
         return $this->id;
@@ -255,6 +264,9 @@ class reservation
         return $this->payment;
     }
 
+
+
+
     /**
      * Add ticket
      *
@@ -265,6 +277,7 @@ class reservation
     public function addTicket(\Marie\LouvresBundle\Entity\ticket $ticket)
     {
         $this->tickets[] = $ticket;
+        // on lie le ticket à la réservation
         $ticket->setReservation($this);
 
         return $this;

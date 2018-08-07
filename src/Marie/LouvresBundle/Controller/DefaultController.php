@@ -5,7 +5,6 @@ namespace Marie\LouvresBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Marie\LouvresBundle\Entity\reservation;
-use Marie\LouvresBundle\Entity\ticket;
 use Marie\LouvresBundle\Form\reservationType;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -60,7 +59,7 @@ class DefaultController extends Controller
     /**
      * @Route("/reservation", name="reservation")
      */
-    public function reservationAction()
+    public function reservationAction(Request $request)
     {
         $reservation = new reservation();
         $form = $this->get('form.factory')->create(reservationType::class,$reservation);

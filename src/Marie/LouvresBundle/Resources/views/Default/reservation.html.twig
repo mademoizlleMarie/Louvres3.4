@@ -11,63 +11,8 @@
 {% block reservation %}
 
     <div class="well">
-        {{ form (form) }}
+        {{ form(form) }}
     </div>
 
 
-    <!-- prénom  -->
-    <form name="booking" method="post" id="myBooking">
-        <div class="">
-            <label for="choiceBookingDate">Prénom</label>
-            <input type="text" name="choiceBookingDate" id="choiceBookingDate" />
-        </div>
-    </form>
-    <!-- nom  -->
-    <form name="booking" method="post" id="myBooking">
-        <div class="">
-            <label for="choiceBookingDate">{{ "name"|trans }}  </label>
-            <input type="text" name="choiceBookingDate" id="choiceBookingDate" />
-        </div>
-    </form>
-    <!-- pays  -->
-    <form name="booking" method="post" id="myBooking">
-        <div class="">
-            <label for="choiceBookingDate">Pays</label>
-            <input type="text" name="choiceBookingDate" id="choiceBookingDate" />
-        </div>
-    </form>
-    <!-- date de naissance  -->
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Date de naissance </label>
-        </div>
-        <select class="custom-select" id="inputGroupSelect01">
-            <option selected>1</option>
-            <option value="1">2</option>
-            <option value="2">3</option>
-            <option value="3">4</option>
-        </select>
-        <select class="custom-select" id="inputGroupSelect01">
-            <option selected>Janvier</option>
-            <option value="1">Février</option>
-            <option value="2">Mars</option>
-            <option value="3">Avril</option>
-            <option value="4">Mai</option>
-            <option value="5">Juin</option>
-            <option value="6">Juillet</option>
-            <option value="7">Août</option>
-            <option value="8">Septembre</option>
-            <option value="9">Octobre</option>
-            <option value="10">Novembre</option>
-            <option value="11">Décembre</option>
-        </select>
-        <select class="custom-select" id="inputGroupSelect01">
-            <option selected>1985</option>
-            <option value="1">1945</option>
-            <option value="2">1946</option>
-            <option value="3">1947</option>
-        </select>
-    </div>
-
-    <button type="button" class="btn btn-info" > <a href="{{ path('paiement') }}">{{ "Payment " |trans }}</button>
 {% endblock %}
