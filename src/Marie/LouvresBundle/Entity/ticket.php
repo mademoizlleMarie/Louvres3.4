@@ -63,7 +63,6 @@ class ticket
      */
     private $description;
 
-
     /**
      * Get id
      *

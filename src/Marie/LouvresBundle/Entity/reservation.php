@@ -15,7 +15,7 @@ class reservation
 {
     // l'entité reservation porte la relation One (reservation) to Many (tickets) afin de permettre d'avoir un tableau d'objet de ticket
     /**
-     * @ORM\OneToMany(targetEntity="Marie\LouvresBundle\Entity\ticket", mappedBy="reservation")
+     * @ORM\OneToMany(targetEntity="Marie\LouvresBundle\Entity\ticket", mappedBy="reservation",cascade={"persist"})
     */
     private $tickets; // une réservation est lié à plusieurs tickets
 
@@ -39,6 +39,7 @@ class reservation
      * @var int
      *
      * @ORM\Column(name="code", type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $code;
 
