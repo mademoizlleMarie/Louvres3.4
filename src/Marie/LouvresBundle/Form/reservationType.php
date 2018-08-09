@@ -21,15 +21,14 @@ class reservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('tickets', CollectionType::class, array('entry_type' => ticketType::class,'allow_add'=> true,'allow_delete' => true ))
-            //->add('numberofticket', IntegerType::class)
-            //->add('code',IntegerType::class )
-            //->add('date',DateType::class)
-            //->add('price',MoneyType::class)
-            //->add('name',TextType::class)
-            //->add('email',EmailType::class)
-            //->add('payment',TextType::class)
-            ->add('save',SubmitType::class)
+           ->add('tickets', CollectionType::class, array('entry_type' => ticketType::class,'allow_add'=> true,'allow_delete' => true ))
+           ->add('code',IntegerType::class )
+           ->add('date',DateType::class)
+           ->add('price',MoneyType::class)
+           ->add('name',TextType::class)
+           ->add('email',EmailType::class)
+           ->add('payment',TextType::class)
+           ->add('save',SubmitType::class)
         ;
     }/**
      * {@inheritdoc}
