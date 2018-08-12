@@ -82,9 +82,6 @@ class DefaultController extends Controller
      }
 
 
-
-
-
     /**
      * @Route("/paiement", name="paiement")
      */

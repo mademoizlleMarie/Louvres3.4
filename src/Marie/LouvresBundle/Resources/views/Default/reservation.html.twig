@@ -10,29 +10,27 @@
 
 {% block reservation %}
 
-    <div class="well">
+        <div class="well">
 
-        {{ form_start(form,{'attr':{'class':'form-horizontal'}}) }}
+                {{ form_start(form,{'attr':{'class':'form-horizontal'}}) }}
 
-        {# Les erreurs générales du formulaire. #}
-        {{ form_errors(form) }}
+                {# Les erreurs générales du formulaire. #}
+                {{ form_errors(form) }}
 
-        {# ticket : #}
-        {{ form_row(form.tickets) }}
-        <a href="#" id="add_ticket" class="btn btn-default">Ajouter</a>
+                {# ticket : #}
+                {{ form_row(form.tickets) }}
+                <a href="#" id="add_ticket" class="btn btn-default">Ajouter</a>
 
-        {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
-        {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
-
-
-        {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
-        {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
-
-        {# Fermeture de la balise <form> du formulaire HTML #}
-        {{ form_end(form) }}
-    </div>
+                {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
 
 
+                {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+
+                {# Fermeture de la balise <form> du formulaire HTML #}
+                {{ form_end(form) }}
+        </div>
 
 
     {# On charge la bibliothèque jQuery. Ici, je la prends depuis le CDN google
@@ -40,7 +38,9 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
     {# Voici le script en question : #}
+
     <script type="text/javascript">
+        for (var iter=0; iter <5; iter++){
         $(document).ready(function() {
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
             var $container = $('div#marie_louvresbundle_reservation_tickets');
@@ -105,6 +105,7 @@
                     return false;
                 });
             }
-        });
+        })};
     </script>
+
 {% endblock %}
