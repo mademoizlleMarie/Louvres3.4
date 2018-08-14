@@ -73,7 +73,8 @@ class DefaultController extends Controller
                 $em->flush();
 
                 return $this->render('@MarieLouvres/Default/paiement.html.twig', array(
-                    'form' => $form->createView(),));
+                    'form' => $form->createView(),
+                    ));
             }
         }
         return $this->render('@MarieLouvres/Default/reservation.html.twig', array(
