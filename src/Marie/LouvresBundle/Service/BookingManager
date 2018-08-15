@@ -1,0 +1,70 @@
+<?php
+
+
+
+class BookingManager
+{
+
+
+    private $em;
+
+
+    public function __construct( \Symfony\Component\HttpFoundation\Session\SessionInterface $session)
+    {
+
+        $this->em = $em;
+        $this->session = $session;
+
+    }
+
+
+    public function initBooking(\Marie\LouvresBundle\Entity\reservation $reservation)
+    {
+        $this->session->set('reservation', $reservation);
+    }
+
+    public function getReservation()
+    {
+        return $this->session->get('reservation');
+    }
+
+
+    public function updateBooking(\Marie\LouvresBundle\Entity\reservation $reservation)
+    {
+        // recupérer les billets
+
+        $tickets = $reservation->getTickets();
+
+        $total = $this->calculPriceTotal($tickets);
+
+        $reservation->setPrice($total);
+
+        // faire le cacul de prix pour chaque billet
+
+        // set le price du billet
+
+
+        return $reservation;
+
+    }
+
+
+    public function calculPriceTotal($tickets)
+    {
+        $total = 0;
+        foreach($tickets as $ticket) {
+            $total += $this->calculPriceTicket($ticket);
+        }
+        return $total;
+    }
+
+
+    public function calculPriceTicket($ticket)
+    {
+
+        // calcu lde rpix en fonction de l'age, etc.....
+
+        return ticketPrice;
+    }
+
+}

@@ -19,6 +19,8 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
 
+
+
         // On crée un objet
         $reservation = new reservation();
         $reservation->setDate(new\Datetime());
@@ -28,17 +30,30 @@ class DefaultController extends Controller
 
         // Si la requête est en POST
         if ($request->isMethod('POST')) {
+
+
+            $bookingManager = $this->get('bookingManager');
+
+
             // On fait le lien Requête <-> Formulaire
             // À partir de maintenant, la variable $reservation contient les valeurs entrées dans le formulaire par le visiteur
             $form->handleRequest($request);
 
             // On vérifie que les valeurs entrées sont correctes
             if ($form->isValid()) {
+
+
+                // la reservation est valide, on la stocke en session
+                $bookingManager->initBooking($reservation);
+
+
                 // On enregistre notre objet $reservation dans la base de données, par exemple
+
+                /*
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($reservation);
                 $em->flush();
-
+*/
                 // $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
 
                 // On redirige vers la page de réservation
@@ -61,7 +76,11 @@ class DefaultController extends Controller
      */
     public function reservationAction(Request $request)
     {
-        $reservation = new reservation();
+
+        $bookingManager = $this->get('bookingManager');
+
+
+        $reservation = $bookingManager->getReservation();
         $form = $this->get('form.factory')->create(reservationType::class,$reservation);
 
         if ($request->isMethod('POST')) {
@@ -69,6 +88,10 @@ class DefaultController extends Controller
 
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
+                
+                
+                $reservation = $bookingManager->updateBooking($reservation);
+                
                 $em->persist($reservation);
                 $em->flush();
 
