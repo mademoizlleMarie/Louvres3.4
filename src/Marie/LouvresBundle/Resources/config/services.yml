@@ -5,3 +5,6 @@ services:
 services:
     BookingManager:
         class: Marie\LouvresBundle\Service\BookingManager
+
+        #revoir pk c'est écrit de cette manière
+        arguments: ['@session']

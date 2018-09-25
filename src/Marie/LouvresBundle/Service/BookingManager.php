@@ -38,10 +38,6 @@ class BookingManager
 
         $reservation->setPrice($total);
 
-        // faire le cacul de prix pour chaque billet
-
-        // set le price du billet
-
         return $reservation;
 
     }
@@ -60,7 +56,22 @@ class BookingManager
     public function calculPriceTicket($ticket)
     {
 
-        // calcul de prix en fonction de l'age, etc.....
+        // si ($datedenaissance=datetime-nrbe jours (mineurs) and + de 4ans  and billet demi-journée
+        //  alors ($ticketPrice = "4")
+        // si ($datedenaissance=datetime-nrbe jours (mineurs) and + de 4ans  and billet journée
+        // alors $ticketPrice = "8"
+        // si ($datedenaissance=datetime-nrbe jours (entre majeur et 59 ans) and reduce  and billet demi-journée
+        // alors $ticketPrice = "5"
+        // si ($datedenaissance=datetime-nrbe jours (entre majeur et 59 ans) and reduce  and billet journée
+        // alors $ticketPrice = "10"
+        //si ($datedenaissance=datetime-nrbe jours (entre majeur et 59 ans) and pas de reduce  and billet demi-journée
+        // alors $ticketPrice = "8"
+        // si ($datedenaissance=datetime-nrbe jours (entre majeur et 59 ans) and pas de reduce  and billet journée
+        // alors $ticketPrice = "16"
+        //si ($datedenaissance=datetime-nrbe jours (+60)  and billet demi-journée
+        // alors $ticketPrice = "6"
+        // si ($datedenaissance=datetime-nrbe jours (+60)  and billet journée
+        // alors $ticketPrice = "12"
 
         return $ticketPrice;
     }
