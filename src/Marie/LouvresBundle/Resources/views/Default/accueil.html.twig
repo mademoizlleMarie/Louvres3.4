@@ -8,7 +8,7 @@
 
 {% block information %}
 	<div> 
-	    <h2> Information </h2>
+	    <h4> Information :</h4>
         <p>
            {{ "The louvre museum is open every day except"| trans }}:
             <br>
@@ -18,8 +18,8 @@
 {% endblock %}
 
 {% block infostock %}
-   <div>
-       <p>
+   <div class="text-center">
+       <p class="text-justify">
            <strong> {{ "Stock info" | trans }}: </strong>
            {{ "there are still enough tickets for the chosen date" | trans }}.
        </p>
@@ -40,7 +40,7 @@
             {# Date : #}
             <div class="form-group">
                 {# Génération du label. #}
-                {{ form_label(form.date, "what date would you like to come", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_label(form.date, "what date would you like to come", {'label_attr': {'class': 'col-sm control-label'}}) }}
 
                 {# Affichage des erreurs pour ce champ précis. #}
                 {{ form_errors(form.date) }}
@@ -54,7 +54,7 @@
             {# Nombre de visiteur : #}
             <div class="form-group">
                 <form action="numberofticket"{# Génération du label. #}
-                {{ form_label(form.numberofticket, "Please enter the number of visitors", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+                {{ form_label(form.numberofticket, "Please enter the number of visitors", {'label_attr': {'class': 'col-sm control-label'}}) }}
 
                 {# Affichage des erreurs pour ce champ précis. #}
                 {{ form_errors(form.numberofticket) }}
@@ -71,10 +71,10 @@
             {# Génération automatique des champs pas encore écrits.
                Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
                et tous les champs cachés (type « hidden »). #}
-            {{ form_rest(form) }}
+            {#{ form_rest(form) }#}
 
             {# Fermeture de la balise <form> du formulaire HTML #}
-            {{ form_end(form) }}
+            {#{ form_end(form) }#}
         </div>
 
         <script>

@@ -1,23 +1,22 @@
 <?php
 
+namespace Marie\LouvresBundle\Service;
 
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class BookingManager
 {
 
 
-    private $em;
+    private $session;
 
-
-    public function __construct( \Symfony\Component\HttpFoundation\Session\SessionInterface $session)
+    //créez une __construct()méthode avec un $sessionargument qui possède l'indicateur de type (chemin d'accès). Définissez cette $sessionpropriété sur une nouvelle propriété et utilisez-la plus tard
+    public function __construct( SessionInterface $session)
     {
-
-        $this->em = $em;
         $this->session = $session;
-
     }
 
-
+    // mettre le chemin de l'entité permet de typer la variable = c'est un objet de type reservation
     public function initBooking(\Marie\LouvresBundle\Entity\reservation $reservation)
     {
         $this->session->set('reservation', $reservation);
@@ -43,7 +42,6 @@ class BookingManager
 
         // set le price du billet
 
-
         return $reservation;
 
     }
@@ -62,9 +60,9 @@ class BookingManager
     public function calculPriceTicket($ticket)
     {
 
-        // calcu lde rpix en fonction de l'age, etc.....
+        // calcul de prix en fonction de l'age, etc.....
 
-        return ticketPrice;
+        return $ticketPrice;
     }
 
 }

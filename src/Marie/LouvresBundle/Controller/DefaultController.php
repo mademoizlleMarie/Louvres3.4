@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Marie\LouvresBundle\Entity\reservation;
 use Marie\LouvresBundle\Form\reservationType;
 use Symfony\Component\HttpFoundation\Request;
+use Marie\LouvresBundle\Service\BookingManager;
 
 
 
@@ -18,21 +19,16 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-
-
-
         // On crée un objet
         $reservation = new reservation();
-        $reservation->setDate(new\Datetime());
         $form = $this->get('form.factory')->create(reservationType::class,$reservation);
         // cela peut être raccourci de cette facon : $form = $this->create(reservationType::class,$reservation);
 
 
         // Si la requête est en POST
-        if ($request->isMethod('POST')) {
-
-
-            $bookingManager = $this->get('bookingManager');
+        if ($request->isMethod('POST'))
+        {
+            $bookingManager = $this->get('BookingManager');
 
 
             // On fait le lien Requête <-> Formulaire
@@ -40,9 +36,8 @@ class DefaultController extends Controller
             $form->handleRequest($request);
 
             // On vérifie que les valeurs entrées sont correctes
-            if ($form->isValid()) {
-
-
+            if ($form->isValid())
+            {
                 // la reservation est valide, on la stocke en session
                 $bookingManager->initBooking($reservation);
 
@@ -83,10 +78,12 @@ class DefaultController extends Controller
         $reservation = $bookingManager->getReservation();
         $form = $this->get('form.factory')->create(reservationType::class,$reservation);
 
-        if ($request->isMethod('POST')) {
+        if ($request->isMethod('POST'))
+        {
             $form->handleRequest($request);
 
-            if ($form->isValid()) {
+            if ($form->isValid())
+            {
                 $em = $this->getDoctrine()->getManager();
                 
                 

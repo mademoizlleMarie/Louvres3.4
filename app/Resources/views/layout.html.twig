@@ -25,7 +25,7 @@
         <link rel="icon" type="image/png" src="{{ asset ('images/ico02.png')}}"/>
     </head>
     <body>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="thumbnail text-center">
                     <img src="{{ asset ('images/louvre2.jpg')}}" alt="louvre coucher" class="img-responsive"/>
@@ -34,29 +34,28 @@
                     </div>
                 </div>
             </div>
-
-            <div class="text-center" >
-
-                {% block information %}{% endblock %}
-
+            <div class="row">
                 {% block infostock %}{% endblock %}
-
-        <!-- formulaire  -->
-                {% block body %}{% endblock %}
-
-
             </div>
-            <div class="row" style="display: flex; flex-direction: column;justify-content: center;align-items: center" >
-                <h2 >Tarification </h2>
-                <div class="col-lg-4">
-                    <ul class="list-group">
-                        <li class="list-group-item">Tarif normal : 16€ (à partir de 12 ans)</li>
-                        <li class="list-group-item">Tarif enfant : 8 € (pour les 4 à 12 ans)</li>
-                        <li class="list-group-item">Tarif sénior : 12€ (à partir de 60 ans)</li>
-                        <li class="list-group-item">Tarif réduit : 10€ (étudiants, employés du musée, militaires)</li>
-                        <li class="list-group-item">Billet demi-journée : 10€</li>
-                        <li class="list-group-item">Gratuit pour les moins de 4 ans</li>
-                    </ul>
+            <div class="row">
+                <div class="col-sm-8" class="text-center" >
+                    <!-- formulaire  -->
+                    {% block body %}{% endblock %}
+                </div>
+                <div class="col-sm-4" class="text-center" >
+                    {% block information %}{% endblock %}
+                <!--- <div class="row" style="display: flex; flex-direction: column;justify-content: center;align-items: center" > -->
+                    <h4 >Tarification : </h4>
+                    <div class="col-lg">
+                        <ul class="list-group">
+                            <li class="list-group-item">Normal : 16€ (à partir de 12 ans)</li>
+                            <li class="list-group-item">Enfant : 8 € (pour les 4 à 12 ans)</li>
+                            <li class="list-group-item">Sénior : 12€ (à partir de 60 ans)</li>
+                            <li class="list-group-item">Réduit : 10€ (étudiants, employés du musée, militaires)</li>
+                            <li class="list-group-item">Billet demi-journée : 10€</li>
+                            <li class="list-group-item">Gratuit pour les moins de 4 ans</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
