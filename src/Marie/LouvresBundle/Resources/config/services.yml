@@ -6,5 +6,5 @@ services:
     BookingManager:
         class: Marie\LouvresBundle\Service\BookingManager
 
-        #revoir pk c'est écrit de cette manière
+        #revoir pk c'est écrit de cette manière ca depend de la version de symfony
         arguments: ['@session']

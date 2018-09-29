@@ -32,7 +32,7 @@
         <div class="well">
 
             {{ form_start(form,{'attr':{'class':'form-horizontal'}}) }}
-
+            {{ form_row(form._token) }}
             {# Les erreurs générales du formulaire. #}
             {{ form_errors(form) }}
 
@@ -47,13 +47,14 @@
 
                 <div class="col-sm-10">
                     {# Génération de l'input. #}
-                    {{ form_widget(form.date, {'attr':{'class':'js-datepicker'}}) }}
+                    {{ form_widget(form.date, {'attr':{'class':'datepicker'}}) }}
+
                 </div>
             </div>
 
             {# Nombre de visiteur : #}
             <div class="form-group">
-                <form action="numberofticket"{# Génération du label. #}
+
                 {{ form_label(form.numberofticket, "Please enter the number of visitors", {'label_attr': {'class': 'col-sm control-label'}}) }}
 
                 {# Affichage des erreurs pour ce champ précis. #}
@@ -68,25 +69,52 @@
             {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
             {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
 
-            {# Génération automatique des champs pas encore écrits.
-               Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
-               et tous les champs cachés (type « hidden »). #}
-            {#{ form_rest(form) }#}
-
-            {# Fermeture de la balise <form> du formulaire HTML #}
-            {{ form_end(form) }}
+            {{ form_end(form, {'render_rest':false}) }}
         </div>
 
+
+
         <script>
+            /** Days to be disabled as an array */
+            var disableddates = ["5-1-", "11-1-", "12-25-"];
+
+            function DisableSpecificDates(date) {
+
+                var m = date.getMonth();
+                var d = date.getDate();
+
+                // First convert the date in to the mm-dd-yyyy format
+                // Take note that we will increment the month count by 1
+                var currentdate = (m + 1) + '-' + d + '-';
+
+
+
+                // We will now check if the date belongs to disableddates array
+                for (var i = 0; i < disableddates.length; i++) {
+
+                    // Now check if the current date is in disabled dates array.
+                    if ($.inArray(currentdate, disableddates) != -1 ) {
+                        return [false];
+                    }
+                }
+                // In case the date is not present in disabled array, we will now check if it is a weekend.
+                // We will use the noWeekends function
+                var day = date.getDay();
+                return [(day != 2)];
+
+            }
             $(document).ready(function() {
-                $('.js-datepicker').datepicker({
-                    format: 'dd-mm-yyyy', // ne fonctionne pas
-                    todayHighlight: true,
-                    disableDaysOfWeek: [2, 6],
-                    disableDates: [121, 305, 359],
-                    uiLibrary: 'bootstrap4',
+
+                $('.datepicker').datepicker({
+                    minDate: 0,
+                {# beforeShowDay: function(date) {
+                        var day = date.getDay();
+                        return [(day != 2)];
+                    }#}
+                    beforeShowDay: DisableSpecificDates
                 });
             });
+            $('div#marie_louvresbundle_reservation_tickets').hide();
         </script>
 
     </div>

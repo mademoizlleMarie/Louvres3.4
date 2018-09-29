@@ -52,8 +52,7 @@ class DefaultController extends Controller
                 // $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
 
                 // On redirige vers la page de réservation
-                return $this->render('@MarieLouvres/Default/reservation.html.twig', array(
-                    'form' => $form->createView(),));
+                return $this->redirectToRoute(reservation);
             }
         }
 
