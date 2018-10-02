@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Marie\LouvresBundle\Entity\reservation;
 use Marie\LouvresBundle\Form\reservationType;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Marie\LouvresBundle\Service\BookingManager;
 
@@ -41,21 +42,10 @@ class DefaultController extends Controller
                 // la reservation est valide, on la stocke en session
                 $bookingManager->initBooking($reservation);
 
-
-                // On enregistre notre objet $reservation dans la base de données, par exemple
-
-                /*
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($reservation);
-                $em->flush();
-*/
-                // $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
-
                 // On redirige vers la page de réservation
-                return $this->redirectToRoute(reservation);
+                return new RedirectResponse($this->generateUrl('reservation'));
             }
         }
-
         // À ce stade, le formulaire n'est pas valide car :
         // - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
         // - Soit la requête est de type POST, mais le formulaire contient des valeurs invalides, donc on l'affiche de nouveau
@@ -63,19 +53,19 @@ class DefaultController extends Controller
             'form' => $form->createView(),));
     }
 
-
-
     /**
      * @Route("/reservation", name="reservation")
      */
     public function reservationAction(Request $request)
     {
-
         $bookingManager = $this->get('bookingManager');
 
-
         $reservation = $bookingManager->getReservation();
+       // $nbticketphp = $reservation->setNumberofticket();
+        var_dump($reservation);
+
         $form = $this->get('form.factory')->create(reservationType::class,$reservation);
+
 
         if ($request->isMethod('POST'))
         {
@@ -84,10 +74,7 @@ class DefaultController extends Controller
             if ($form->isValid())
             {
                 $em = $this->getDoctrine()->getManager();
-                
-                
                 $reservation = $bookingManager->updateBooking($reservation);
-                
                 $em->persist($reservation);
                 $em->flush();
 
@@ -99,6 +86,7 @@ class DefaultController extends Controller
         return $this->render('@MarieLouvres/Default/reservation.html.twig', array(
             'form' => $form->createView(),
         ));
+
      }
 
 

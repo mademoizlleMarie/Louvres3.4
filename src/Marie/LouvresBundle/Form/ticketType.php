@@ -21,7 +21,8 @@ class ticketType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('firstname', TextType::class)
-            ->add('dateofbirth', DateType::class)
+            ->add('dateofbirth',DateType::class)
+                //array('widget' => 'choice','format' => 'dd-MM-yyyy','html5' => false,))
             ->add('reduced', CheckboxType::class,array('required' => false))
             ->add('description', ChoiceType::class, array('choices'=> array('day ticket' =>'day ticket','half day ticket' =>'half day ticket')));
 

@@ -75,21 +75,15 @@
 
 
         <script>
-            /** Days to be disabled as an array */
-            var disableddates = ["5-1-", "11-1-", "12-25-"];
+            // http://jqueryui.com/datepicker/ Days to be disabled as an array
+            var disableddates = ["1-5-", "1-11-", "25-12-"];
 
             function DisableSpecificDates(date) {
-
-                var m = date.getMonth();
                 var d = date.getDate();
+                var m = date.getMonth();
 
-                // First convert the date in to the mm-dd-yyyy format
-                // Take note that we will increment the month count by 1
-                var currentdate = (m + 1) + '-' + d + '-';
+                var currentdate = d + '-' + (m + 1)+ '-';
 
-
-
-                // We will now check if the date belongs to disableddates array
                 for (var i = 0; i < disableddates.length; i++) {
 
                     // Now check if the current date is in disabled dates array.
@@ -97,8 +91,7 @@
                         return [false];
                     }
                 }
-                // In case the date is not present in disabled array, we will now check if it is a weekend.
-                // We will use the noWeekends function
+                // In case the date is not present in disabled array, we will now check if it is a day.
                 var day = date.getDay();
                 return [(day != 2)];
 
@@ -107,10 +100,8 @@
 
                 $('.datepicker').datepicker({
                     minDate: 0,
-                {# beforeShowDay: function(date) {
-                        var day = date.getDay();
-                        return [(day != 2)];
-                    }#}
+                    dateFormat: 'dd MM yy',
+                    firstDay:1,
                     beforeShowDay: DisableSpecificDates
                 });
             });

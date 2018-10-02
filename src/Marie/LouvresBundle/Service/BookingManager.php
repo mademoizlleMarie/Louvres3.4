@@ -56,6 +56,11 @@ class BookingManager
     public function calculPriceTicket($ticket)
     {
 
+    var_dump($ticket);
+    if ($ticket->$dateofbirth < (new \DateTime('now')))
+           {$ticketPrice = 4;}
+    else {$ticketPrice = 5;}
+
         // si ($datedenaissance=datetime-nrbe jours (mineurs) and + de 4ans  and billet demi-journée
         //  alors ($ticketPrice = "4")
         // si ($datedenaissance=datetime-nrbe jours (mineurs) and + de 4ans  and billet journée

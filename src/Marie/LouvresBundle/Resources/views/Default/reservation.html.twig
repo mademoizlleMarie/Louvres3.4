@@ -13,37 +13,32 @@
         <div class="well">
 
                 {{ form_start(form,{'attr':{'class':'form-horizontal'}}) }}
-
+                {{ form_row(form._token) }}
                 {# Les erreurs générales du formulaire. #}
                 {{ form_errors(form) }}
 
                 {# ticket : #}
                 {{ form_row(form.tickets) }}
+
                 <a href="#" id="add_ticket" class="btn btn-default">Ajouter</a>
 
                 {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
                 {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
 
-
                 {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
                 {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
 
                 {# Fermeture de la balise <form> du formulaire HTML #}
-                {{ form_end(form) }}
+                {{ form_end(form, {'render_rest':false}) }}
         </div>
 
-
-    {# On charge la bibliothèque jQuery. Ici, je la prends depuis le CDN google
-       mais si vous l'avez en local, changez simplement l'adresse. #}
-
-
-    {# Voici le script en question : #}
-    {% set nbticketphp = 4 %} {# à mettre dans le controlleur#}
+    {% set nbticketphp = 1 %}
     <script type="text/javascript">
 
         var nbticket = {{ nbticketphp}};
         console.log(nbticket);
         $(document).ready(function() {
+
             // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
             var $container = $('div#marie_louvresbundle_reservation_tickets');
 
@@ -107,7 +102,23 @@
                     return false;
                 });
             }
-        });
+         });
     </script>
+
+   {# <script>
+
+        $(document).ready(function() {
+
+            $('.datepicker').datepicker({
+                minDate: 0,
+                dateFormat: 'dd MM yy',
+                firstDay:1,
+
+            });
+        });
+
+    </script>#}
+
+
 
 {% endblock %}
