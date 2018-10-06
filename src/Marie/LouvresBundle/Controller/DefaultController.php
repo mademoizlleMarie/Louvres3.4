@@ -61,8 +61,6 @@ class DefaultController extends Controller
         $bookingManager = $this->get('bookingManager');
 
         $reservation = $bookingManager->getReservation();
-       // $nbticketphp = $reservation->setNumberofticket();
-        var_dump($reservation);
 
         $form = $this->get('form.factory')->create(reservationType::class,$reservation);
 
@@ -84,7 +82,7 @@ class DefaultController extends Controller
             }
         }
         return $this->render('@MarieLouvres/Default/reservation.html.twig', array(
-            'form' => $form->createView(),
+            'form' => $form->createView(), "reservation"=>$reservation
         ));
 
      }

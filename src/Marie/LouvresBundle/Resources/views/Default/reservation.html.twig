@@ -32,10 +32,10 @@
                 {{ form_end(form, {'render_rest':false}) }}
         </div>
 
-    {% set nbticketphp = 1 %}
+
     <script type="text/javascript">
 
-        var nbticket = {{ nbticketphp}};
+        var nbticket = {{ reservation.numberofticket}};
         console.log(nbticket);
         $(document).ready(function() {
 
