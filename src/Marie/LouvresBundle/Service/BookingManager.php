@@ -3,11 +3,10 @@
 namespace Marie\LouvresBundle\Service;
 
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Marie\LouvresBundle\Entity\ticket;
 
 class BookingManager
 {
-
-
     private $session;
 
     //créez une __construct()méthode avec un $sessionargument qui possède l'indicateur de type (chemin d'accès). Définissez cette $sessionpropriété sur une nouvelle propriété et utilisez-la plus tard
@@ -27,7 +26,6 @@ class BookingManager
         return $this->session->get('reservation');
     }
 
-
     public function updateBooking(\Marie\LouvresBundle\Entity\reservation $reservation)
     {
         // recupérer les billets
@@ -42,7 +40,6 @@ class BookingManager
 
     }
 
-
     public function calculPriceTotal($tickets)
     {
         $total = 0;
@@ -53,32 +50,25 @@ class BookingManager
     }
 
 
+    const REDUCE_PRICE = 10;
+
+
     public function calculPriceTicket($ticket)
     {
+        // if price reduced
+        if($ticket->getReduced() === 1) {
+            $price = BookingManager::REDUCE_PRICE;
+        } else { // standard price ticket
+            $price = $ticket->getPrice();
+        }
+        // if half day
+        if($ticket->getDescription() === 1) $price = $price/2;
 
-    var_dump($ticket);
-    if ($ticket->$dateofbirth < (new \DateTime('now')))
-           {$ticketPrice = 4;}
-    else {$ticketPrice = 5;}
-
-        // si ($datedenaissance=datetime-nrbe jours (mineurs) and + de 4ans  and billet demi-journée
-        //  alors ($ticketPrice = "4")
-        // si ($datedenaissance=datetime-nrbe jours (mineurs) and + de 4ans  and billet journée
-        // alors $ticketPrice = "8"
-        // si ($datedenaissance=datetime-nrbe jours (entre majeur et 59 ans) and reduce  and billet demi-journée
-        // alors $ticketPrice = "5"
-        // si ($datedenaissance=datetime-nrbe jours (entre majeur et 59 ans) and reduce  and billet journée
-        // alors $ticketPrice = "10"
-        //si ($datedenaissance=datetime-nrbe jours (entre majeur et 59 ans) and pas de reduce  and billet demi-journée
-        // alors $ticketPrice = "8"
-        // si ($datedenaissance=datetime-nrbe jours (entre majeur et 59 ans) and pas de reduce  and billet journée
-        // alors $ticketPrice = "16"
-        //si ($datedenaissance=datetime-nrbe jours (+60)  and billet demi-journée
-        // alors $ticketPrice = "6"
-        // si ($datedenaissance=datetime-nrbe jours (+60)  and billet journée
-        // alors $ticketPrice = "12"
-
-        return $ticketPrice;
+        return $price;
     }
 
+
 }
+
+
+

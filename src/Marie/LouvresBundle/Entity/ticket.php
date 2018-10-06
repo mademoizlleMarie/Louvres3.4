@@ -145,6 +145,61 @@ class ticket
         return $this->dateofbirth;
     }
 
+    public function getAge()
+    {
+
+        $birthday = $this->getDateofbirth();
+        $currentDay = date('Y-m-d');
+
+        $diff = 20; //$currentDay - $birthday;
+
+        return $diff;
+
+    }
+    private $params = [
+        ['from' => 0, 'to' => 4, 'category' => 'BABY'],
+        ['from' => 4, 'to' => 12, 'category' => 'CHILD'],
+        ['from' => 12, 'to' => 60, 'category' => 'NORMAL'],
+        ['from' => 60, 'to' => 200, 'category' => 'SENIOR'],
+    ];
+
+    private $prices = [
+        'BABY' => 0,
+        'CHILD' => 8,
+        'NORMAL' => 16,
+        'SENIOR' => 12,
+    ];
+
+    public function getPrice()
+    {
+
+        return $this->prices['category'];
+    }
+
+    public function getCategory()
+    {
+        $params = $this->params;
+        $age = $this->getAge(); // return 3 or 11
+        foreach($params as $param)
+        {
+            if( $age >= $param['from'] && $age < $param['to']) $category = $param['category'];
+        }
+
+        /*
+        if( $age >= 0 && $age < 4) 	 $category = 'BABY';
+        if( $age >  4 && $age < 12)  $category = 'CHILD';
+        if( $age > 12 && $age < 60)  $category = 'NORMAL';
+        if( $age > 60 && $age < 200) $category = 'SENIOR';
+        */
+
+        return $category;
+
+
+    }
+
+
+
+
     /**
      * Set reduced
      *
