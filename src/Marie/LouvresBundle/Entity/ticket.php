@@ -149,9 +149,10 @@ class ticket
     {
 
         $birthday = $this->getDateofbirth();
+        $birthday = $birthday->format('Y-m-d');
         $currentDay = date('Y-m-d');
 
-        $diff = 20; //$currentDay - $birthday;
+        $diff = $currentDay - $birthday;
 
         return $diff;
 
@@ -170,10 +171,11 @@ class ticket
         'SENIOR' => 12,
     ];
 
+    // modifié
     public function getPrice()
     {
-
-        return $this->prices['category'];
+        $category = $this->getCategory();
+        return $this->$category->prices['category'];
     }
 
     public function getCategory()
