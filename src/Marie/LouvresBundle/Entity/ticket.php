@@ -174,8 +174,13 @@ class ticket
     // modifié
     public function getPrice()
     {
+        $prices = $this->prices;
         $category = $this->getCategory();
-        return $this->$category->prices['category'];
+        foreach ($prices as $price)
+        {
+            $category = $price['category'];
+        }
+        return $price;
     }
 
     public function getCategory()
