@@ -148,12 +148,9 @@ class ticket
     public function getAge()
     {
 
-        $birthday = $this->getDateofbirth();
-        $birthday = $birthday->format('Y-m-d');
-        $currentDay = date('Y-m-d');
-
-        $diff = $currentDay - $birthday;
-
+        $diff1 = date_diff(new \DateTime(),$this->getDateofbirth());
+        $diff = $diff1->format('%Y');
+        var_dump($diff);
         return $diff;
 
     }
@@ -176,11 +173,14 @@ class ticket
     {
         $prices = $this->prices;
         $category = $this->getCategory();
-        foreach ($prices as $price)
+        var_dump($category);
+        //if(key_exist($category, $prices) $result = $prices{$category}
+        foreach ($prices as $key => $value)
         {
-            $category = $price['category'];
+            if ($category == $key) $result = $value ;
         }
-        return $price;
+
+        return $result;
     }
 
     public function getCategory()
@@ -191,21 +191,9 @@ class ticket
         {
             if( $age >= $param['from'] && $age < $param['to']) $category = $param['category'];
         }
-
-        /*
-        if( $age >= 0 && $age < 4) 	 $category = 'BABY';
-        if( $age >  4 && $age < 12)  $category = 'CHILD';
-        if( $age > 12 && $age < 60)  $category = 'NORMAL';
-        if( $age > 60 && $age < 200) $category = 'SENIOR';
-        */
-
+        var_dump($category);
         return $category;
-
-
     }
-
-
-
 
     /**
      * Set reduced
@@ -217,7 +205,7 @@ class ticket
     public function setReduced($reduced)
     {
         $this->reduced = $reduced;
-
+        var_dump($reduced);
         return $this;
     }
 
@@ -241,7 +229,6 @@ class ticket
     public function setDescription($description)
     {
         $this->description = $description;
-
         return $this;
     }
 

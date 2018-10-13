@@ -27,18 +27,20 @@ class reservationType extends AbstractType
                    'allow_add'=> true,
                    'allow_delete' => true
                ))
-           #->add('code',IntegerType::class )
-           ->add('numberofticket',IntegerType::class )
-           ->add('date',DateType::class,
+           ->add('code',IntegerType::class )
+          # ->add('numberofticket',IntegerType::class )
+
+          /* ->add('date',DateType::class,
                array(
                    'widget'=> 'single_text',
                    'format' => 'dd-MM-yyyy',
                    'html5' => false,
                    'attr' => ['class' => 'js-datepicker']
                ))
-           #->add('price',MoneyType::class)
-           ->add('name',TextType::class)
-           ->add('email',EmailType::class)
+*/
+           ->add('price',MoneyType::class)
+           #>add('name',TextType::class)
+           #->add('email',EmailType::class)
            ->add('payment',TextType::class)
            ->add('save',SubmitType::class)
         ;

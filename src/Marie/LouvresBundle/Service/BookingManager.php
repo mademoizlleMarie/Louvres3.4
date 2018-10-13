@@ -34,7 +34,9 @@ class BookingManager
 
         $total = $this->calculPriceTotal($tickets);
 
-        $reservation->setPrice($total);
+        $reservation->setPrice($total)->setCode($code);
+//->setDate()->setNumberofticket()
+        var_dump($reservation);
 
         return $reservation;
 
@@ -56,17 +58,23 @@ class BookingManager
     public function calculPriceTicket($ticket)
     {
         // if price reduced
-        if($ticket->getReduced() === 1) {
+        if($ticket->getReduced() === true) {
             $price = BookingManager::REDUCE_PRICE;
         } else { // standard price ticket
             $price = $ticket->getPrice();
         }
         // if half day
-        if($ticket->getDescription() === 1) $price = $price/2;
+        if($ticket->getDescription() === 'half day ticket') $price = $price/2;
 
         return $price;
     }
+    public function fabrikCode($reservation)
+    {
 
+
+
+        return $code;
+    }
 
 }
 

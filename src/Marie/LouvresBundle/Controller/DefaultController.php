@@ -63,6 +63,7 @@ class DefaultController extends Controller
         $reservation = $bookingManager->getReservation();
 
         $form = $this->get('form.factory')->create(reservationType::class,$reservation);
+        var_dump($reservation);
 
 
         if ($request->isMethod('POST'))
@@ -71,14 +72,18 @@ class DefaultController extends Controller
 
             if ($form->isValid())
             {
-                $em = $this->getDoctrine()->getManager();
-                $reservation = $bookingManager->updateBooking($reservation);
-                $em->persist($reservation);
-                $em->flush();
+$datas=$form->getData();
+var_dump($datas);
+var_dump($reservation);
 
-                return $this->render('@MarieLouvres/Default/paiement.html.twig', array(
-                    'form' => $form->createView(),
-                    ));
+                $bookingManager->updateBooking($reservation);
+
+                //$em = $this->getDoctrine()->getManager();
+                //$reservation = $bookingManager->updateBooking($reservation);
+                //$em->persist($reservation);
+                //$em->flush();
+
+                return new RedirectResponse($this->generateUrl('paiement'));
             }
         }
         return $this->render('@MarieLouvres/Default/reservation.html.twig', array(
@@ -91,8 +96,34 @@ class DefaultController extends Controller
     /**
      * @Route("/paiement", name="paiement")
      */
-    public function paiementAction()
+    public function paiementAction(Request $request)
     {
-        return $this->render('@MarieLouvres/Default/paiement.html.twig');
+        $reservation = new reservation();
+        $bookingManager = $this->get('bookingManager');
+
+        $reservation = $bookingManager->getReservation();
+
+        $form = $this->get('form.factory')->create(reservationType::class,$reservation);
+        var_dump($reservation);
+
+
+        if ($request->isMethod('POST'))
+        {
+            $form->handleRequest($request);
+
+            if ($form->isValid())
+            {
+                //$em = $this->getDoctrine()->getManager();
+                //$reservation = $bookingManager->updateBooking($reservation);
+                //$em->persist($reservation);
+                //$em->flush();
+
+                return new RedirectResponse($this->generateUrl('paiement'));
+            }
+        }
+        return $this->render('@MarieLouvres/Default/paiement.html.twig', array(
+            'form' => $form->createView(),"reservation"=>$reservation
+        ));
+
     }
 }

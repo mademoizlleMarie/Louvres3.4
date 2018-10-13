@@ -57,12 +57,32 @@
 
                 {{ form_label(form.numberofticket, "Please enter the number of visitors", {'label_attr': {'class': 'col-sm control-label'}}) }}
 
-                {# Affichage des erreurs pour ce champ précis. #}
                 {{ form_errors(form.numberofticket) }}
 
                 <div class="col-sm-10">
-                    {# Génération de l'input. #}
                     {{ form_widget(form.numberofticket, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            {# Nom de la réservation : #}
+            <div class="form-group">
+
+                {{ form_label(form.name, "Please enter a name for the reservation", {'label_attr': {'class': 'col-sm control-label'}}) }}
+
+                {{ form_errors(form.name) }}
+
+                <div class="col-sm-10">
+                {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            {# Email de la réservation : #}
+            <div class="form-group">
+
+                {{ form_label(form.email, "Please indicate your email for the reservation", {'label_attr': {'class': 'col-sm control-label'}}) }}
+
+                {{ form_errors(form.email) }}
+
+                <div class="col-sm-10">
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
                 </div>
             </div>
 
