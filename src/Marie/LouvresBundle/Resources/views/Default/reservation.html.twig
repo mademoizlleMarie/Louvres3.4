@@ -12,14 +12,54 @@
 
         <div class="well">
 
-                {{ form_start(form,{'attr':{'class':'form-horizontal'}}) }}
-                {{ form_row(form._token) }}
-                {# Les erreurs générales du formulaire. #}
-                {{ form_errors(form) }}
+            {{ form_start(form,{'attr':{'class':'form-horizontal'}}) }}
+
+            {# Les erreurs générales du formulaire.#}
+            {{ form_errors(form.tickets) }}
+
+            <div class="tickets" data-prototype="{{ form_row(form.tickets.vars.prototype.name)|e('html_attr') }}">
+
+                <div class="form-group">
+                    {{ form_label(form.tickets.vars.prototype.name)}}
+
+                    <div class="col-sm-10">
+                       {{ form_widget(form.tickets.vars.prototype.name)}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.tickets.vars.prototype.firstname)}}
+
+                    <div class="col-sm-10">
+                        {{ form_widget(form.tickets.vars.prototype.firstname)}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.tickets.vars.prototype.dateofbirth)}}
+
+                    <div class="col-sm-10">
+                        {{ form_widget(form.tickets.vars.prototype.dateofbirth, {'attr':{'class':'datepicker'}}) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.tickets.vars.prototype.reduced)}}
+
+                    <div class="col-sm-10">
+                        {{ form_widget(form.tickets.vars.prototype.reduced)}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.tickets.vars.prototype.description)}}
+
+                    <div class="col-sm-10">
+                        {{ form_widget(form.tickets.vars.prototype.description)}}
+                    </div>
+                </div>
+
+            </div>
 
                 {# ticket : #}
-                {{ form_row(form.tickets) }}
-    {{ dump (form) }}
+            {#    {{ form_row(form.tickets) }}#}
+           {{ dump (form) }}
                 <a href="#" id="add_ticket" class="btn btn-default">Ajouter</a>
 
                 {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
@@ -102,6 +142,10 @@
                     return false;
                 });
             }
+            $('.datepicker').datepicker({
+                dateFormat:'dd MM yy',
+                firstDay:1
+            });
          });
     </script>
 
