@@ -13,53 +13,17 @@
         <div class="well">
 
             {{ form_start(form,{'attr':{'class':'form-horizontal'}}) }}
-
+            {{ form_row(form._token) }}
             {# Les erreurs générales du formulaire.#}
             {{ form_errors(form.tickets) }}
 
-            <div class="tickets" data-prototype="{{ form_row(form.tickets.vars.prototype.name)|e('html_attr') }}">
+            {{ form_widget(form.tickets) }}
 
-                <div class="form-group">
-                    {{ form_label(form.tickets.vars.prototype.name)}}
-
-                    <div class="col-sm-10">
-                       {{ form_widget(form.tickets.vars.prototype.name)}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.tickets.vars.prototype.firstname)}}
-
-                    <div class="col-sm-10">
-                        {{ form_widget(form.tickets.vars.prototype.firstname)}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.tickets.vars.prototype.dateofbirth)}}
-
-                    <div class="col-sm-10">
-                        {{ form_widget(form.tickets.vars.prototype.dateofbirth, {'attr':{'class':'datepicker'}}) }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.tickets.vars.prototype.reduced)}}
-
-                    <div class="col-sm-10">
-                        {{ form_widget(form.tickets.vars.prototype.reduced)}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.tickets.vars.prototype.description)}}
-
-                    <div class="col-sm-10">
-                        {{ form_widget(form.tickets.vars.prototype.description)}}
-                    </div>
-                </div>
 
             </div>
 
                 {# ticket : #}
-            {#    {{ form_row(form.tickets) }}#}
-           {{ dump (form) }}
+
                 <a href="#" id="add_ticket" class="btn btn-default">Ajouter</a>
 
                 {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
@@ -142,27 +106,26 @@
                     return false;
                 });
             }
-            $('.datepicker').datepicker({
-                dateFormat:'dd MM yy',
-                firstDay:1
-            });
-         });
-    </script>
-
-   {# <script>
-
-        $(document).ready(function() {
-
-            $('.datepicker').datepicker({
-                minDate: 0,
+            $('.js-datepicker').datepicker(
+                {closeText: 'Fermer',
+                    prevText: 'Précédent',
+                    nextText: 'Suivant',
+                    currentText: 'Aujourd\'hui',
+                    monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                    monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+                    dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+                    dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+                    dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                    weekHeader: 'Sem.',
+                    dateFormat: 'yy-mm-dd',
+                    minDate: 0,
                 dateFormat: 'dd MM yy',
                 firstDay:1,
+                }
+            );
 
-            });
-        });
-
-    </script>#}
-
+         });
+    </script>
 
 
 {% endblock %}

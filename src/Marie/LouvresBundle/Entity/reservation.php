@@ -4,6 +4,7 @@ namespace Marie\LouvresBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraint as Assert;
 
 /**
  * reservation
@@ -40,6 +41,7 @@ class reservation
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime", nullable=true)
+     *
      */
     private $date;
 

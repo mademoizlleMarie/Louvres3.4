@@ -31,7 +31,6 @@ class DefaultController extends Controller
         {
             $bookingManager = $this->get('BookingManager');
 
-
             // On fait le lien Requête <-> Formulaire
             // À partir de maintenant, la variable $reservation contient les valeurs entrées dans le formulaire par le visiteur
             $form->handleRequest($request);
@@ -61,10 +60,8 @@ class DefaultController extends Controller
         $bookingManager = $this->get('bookingManager');
 
         $reservation = $bookingManager->getReservation();
-
+    var_dump($reservation);
         $form = $this->get('form.factory')->create(reservationType::class,$reservation);
-        var_dump($reservation);
-
 
         if ($request->isMethod('POST'))
         {
@@ -72,16 +69,12 @@ class DefaultController extends Controller
 
             if ($form->isValid())
             {
-$datas=$form->getData();
-var_dump($datas);
-var_dump($reservation);
-
                 $bookingManager->updateBooking($reservation);
+                $em = $this->getDoctrine()->getManager();
+                $reservation = $bookingManager->updateBooking($reservation);
 
-                //$em = $this->getDoctrine()->getManager();
-                //$reservation = $bookingManager->updateBooking($reservation);
-                //$em->persist($reservation);
-                //$em->flush();
+                $em->persist($reservation);
+                $em->flush();
 
                 return new RedirectResponse($this->generateUrl('paiement'));
             }

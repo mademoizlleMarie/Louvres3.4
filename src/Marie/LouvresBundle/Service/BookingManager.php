@@ -29,15 +29,15 @@ class BookingManager
     public function updateBooking(\Marie\LouvresBundle\Entity\reservation $reservation)
     {
         // recupérer les billets
-
+        $date = $reservation->getReservation();
         $tickets = $reservation->getTickets();
-
         $total = $this->calculPriceTotal($tickets);
+        //$code = $this->generatecode($reservation);
+        $reservation->setPrice($total)->setDate($date);
+        //->setCode($code);
 
-        $reservation->setPrice($total)->setCode($code);
-//->setDate()->setNumberofticket()
         var_dump($reservation);
-
+exit();
         return $reservation;
 
     }
@@ -68,13 +68,16 @@ class BookingManager
 
         return $price;
     }
-    public function fabrikCode($reservation)
+ /*   public function generateCode($reservation)
     {
+        $code = $reservation->getdate();
 
 
+var_dump($code);
 
         return $code;
-    }
+
+    }*/
 
 }
 
