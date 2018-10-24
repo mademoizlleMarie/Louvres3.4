@@ -13,14 +13,14 @@
         <div class="well">
 
             {{ form_start(form,{'attr':{'class':'form-horizontal'}}) }}
-            {{ form_row(form._token) }}
+
             {# Les erreurs générales du formulaire.#}
             {{ form_errors(form.tickets) }}
 
             {{ form_widget(form.tickets) }}
 
 
-            </div>
+
 
                 {# ticket : #}
 
@@ -33,13 +33,13 @@
                 {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
 
                 {# Fermeture de la balise <form> du formulaire HTML #}
-                {{ form_end(form, {'render_rest':false}) }}
+                {{ form_end(form) }}
         </div>
 
 
     <script type="text/javascript">
 
-        var nbticket = {{ reservation.numberofticket}};
+        var nbticket = {{ reservation.numberofticket }};
         console.log(nbticket);
         $(document).ready(function() {
 
@@ -117,10 +117,8 @@
                     dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
                     dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
                     weekHeader: 'Sem.',
-                    dateFormat: 'yy-mm-dd',
-                    minDate: 0,
-                dateFormat: 'dd MM yy',
-                firstDay:1,
+                    dateFormat: 'dd-mm-yy',
+                    firstDay:1
                 }
             );
 

@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Marie\LouvresBundle\Entity\reservation;
 use Marie\LouvresBundle\Form\reservationType;
+use Marie\LouvresBundle\Form\reservationTicketType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Marie\LouvresBundle\Service\BookingManager;
@@ -60,8 +61,8 @@ class DefaultController extends Controller
         $bookingManager = $this->get('bookingManager');
 
         $reservation = $bookingManager->getReservation();
-    var_dump($reservation);
-        $form = $this->get('form.factory')->create(reservationType::class,$reservation);
+
+        $form = $this->get('form.factory')->create(reservationTicketType::class,$reservation);
 
         if ($request->isMethod('POST'))
         {
@@ -69,9 +70,10 @@ class DefaultController extends Controller
 
             if ($form->isValid())
             {
-                $bookingManager->updateBooking($reservation);
+
                 $em = $this->getDoctrine()->getManager();
                 $reservation = $bookingManager->updateBooking($reservation);
+                var_dump($reservation);
 
                 $em->persist($reservation);
                 $em->flush();

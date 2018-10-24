@@ -14,7 +14,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
-class reservationType extends AbstractType
+
+class reservationTicketType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -22,21 +23,15 @@ class reservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
-           ->add('code',IntegerType::class )
-           ->add('numberofticket',IntegerType::class )
-           ->add('date',DateType::class,
+           ->add('tickets', CollectionType::class,
                array(
-                   'widget'=> 'single_text',
-                   'format' => 'dd-MM-yyyy',
-                   'html5' => false,
-                   'attr' => ['class' => 'js-datepicker']
+                   'entry_type' => ticketType::class,
+                   'label' => false,
+                   'allow_add'=> true,
+                   'allow_delete' => true
                ))
-           ->add('price',MoneyType::class)
-           ->add('name',TextType::class)
-           ->add('email',EmailType::class)
-           ->add('payment',TextType::class)
-           ->add('save',SubmitType::class)
+
+            ->add('save',SubmitType::class)
         ;
     }/**
      * {@inheritdoc}
