@@ -30,9 +30,12 @@ class BookingManager
     {
                 // recupérer les billets
         $tickets = $reservation->getTickets();
+        //calcul prix
         $total = $this->calculPriceTotal($tickets);
+        //pas defaut payement à false
         $payment = $reservation->getPayment()=== false;
-        $code = $reservation->getPrice();
+        // le code du billet revoir comment faire pour faire un code complet
+        $code = $reservation->getNumberofticket();
         $reservation->setPrice($total)->setPayment($payment)->setCode($code);
 
         return $reservation;
@@ -44,6 +47,7 @@ class BookingManager
         $total = 0;
         foreach($tickets as $ticket) {
             $total += $this->calculPriceTicket($ticket);
+
         }
         return $total;
     }
@@ -65,16 +69,6 @@ class BookingManager
 
         return $price;
     }
- /*   public function generateCode($reservation)
-    {
-        $code = $reservation->getdate();
-
-
-var_dump($code);
-
-        return $code;
-
-    }*/
 
 }
 

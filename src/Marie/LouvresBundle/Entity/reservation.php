@@ -279,7 +279,7 @@ class reservation
      *
      * @return reservation
      */
-    public function addTicket(\Marie\LouvresBundle\Entity\ticket $ticket)
+    public function addTicket(ticket $ticket)
     {
         $this->tickets[] = $ticket;
         // on lie le ticket à la réservation
@@ -289,9 +289,10 @@ class reservation
     }
 
     /**
+    /**
      * Get tickets
      *
-     * @return array
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTickets()
     {

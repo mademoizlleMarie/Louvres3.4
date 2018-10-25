@@ -14,10 +14,18 @@ use Doctrine\ORM\Mapping as ORM;
 class ticket
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Marie\LouvresBundle\Entity\reservation", inversedBy="tickets")
-     * @ORM\JoinColumn(name="reservation_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Marie\LouvresBundle\Entity\reservation", inversedBy="tickets", cascade = {"persist"})
+     *
+     *
      */
     private $reservation;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Marie\LouvresBundle\Entity\country")
+     *
+     *
+     */
+    private $country;
 
     /**
      * @var int
@@ -266,4 +274,22 @@ class ticket
     {
         return $this->reservation;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param mixed $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+
+
 }
