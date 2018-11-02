@@ -5,6 +5,7 @@ namespace Marie\LouvresBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Marie\LouvresBundle\Entity\reservation;
+use Marie\LouvresBundle\Entity\ticket;
 use Marie\LouvresBundle\Form\reservationType;
 use Marie\LouvresBundle\Form\reservationTicketType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -45,6 +46,7 @@ class DefaultController extends Controller
                 // On redirige vers la page de réservation
                 return new RedirectResponse($this->generateUrl('reservation'));
             }
+            var_dump($reservation);
         }
         // À ce stade, le formulaire n'est pas valide car :
         // - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
@@ -73,8 +75,6 @@ class DefaultController extends Controller
 
                 $em = $this->getDoctrine()->getManager();
                 $reservation = $bookingManager->updateBooking($reservation);
-                var_dump($reservation);
-
                 $em->persist($reservation);
                 $em->flush();
 

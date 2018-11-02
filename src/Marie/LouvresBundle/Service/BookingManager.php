@@ -34,7 +34,7 @@ class BookingManager
         $payment = $reservation->getPayment()=== false;
         $code = $reservation->getPrice();
         $reservation->setPrice($total)->setPayment($payment)->setCode($code);
-
+        foreach ($tickets as $ticket){$reservation->addTicket($ticket);}
         return $reservation;
 
     }
