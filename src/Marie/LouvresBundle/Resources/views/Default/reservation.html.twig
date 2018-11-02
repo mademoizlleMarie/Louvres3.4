@@ -19,21 +19,16 @@
 
             {{ form_widget(form.tickets) }}
 
+            {# ticket : #}
 
+            {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
 
+            {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
 
-                {# ticket : #}
-
-                <a href="#" id="add_ticket" class="btn btn-default">Ajouter</a>
-
-                {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
-                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
-
-                {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
-                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
-
-                {# Fermeture de la balise <form> du formulaire HTML #}
-                {{ form_end(form) }}
+            {# Fermeture de la balise <form> du formulaire HTML #}
+            {{ form_end(form) }}
         </div>
 
 
@@ -48,14 +43,6 @@
 
             // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
             var index = $container.find(':input').length;
-
-            // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
-            $('#add_ticket').click(function(e) {
-                addTicket($container);
-
-                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
-                return false;
-            });
 
             // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
             if (index == 0) { for (var iter = 0; iter < nbticket ; iter++){
@@ -79,9 +66,6 @@
 
                 // On crée un objet jquery qui contient ce template
                 var $prototype = $(template);
-
-                // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
-                addDeleteLink($prototype);
 
                 // On ajoute le prototype modifié à la fin de la balise <div>
                 $container.append($prototype);
