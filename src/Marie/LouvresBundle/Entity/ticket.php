@@ -20,10 +20,16 @@ class ticket
      */
     private $reservation;
 
+    /*/**
+     * @ORM\ManyToOne(targetEntity="Marie\LouvresBundle\Entity\country", inversedBy="tickets",cascade = {"persist"})
+     *
+     *
+     */
+
     /**
-     * @ORM\ManyToOne(targetEntity="Marie\LouvresBundle\Entity\country")
+     * @var string
      *
-     *
+     * @ORM\Column(name="country", type="string", length=255)
      */
     private $country;
 

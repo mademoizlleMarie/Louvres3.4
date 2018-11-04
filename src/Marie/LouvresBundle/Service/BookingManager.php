@@ -28,15 +28,16 @@ class BookingManager
 
     public function updateBooking(\Marie\LouvresBundle\Entity\reservation $reservation)
     {
-                // recupérer les billets
+        // recupérer les billets
         $tickets = $reservation->getTickets();
         //calcul prix
         $total = $this->calculPriceTotal($tickets);
-        //pas defaut payement à false
+        //par defaut payement à false
         $payment = $reservation->getPayment()=== false;
         // le code du billet revoir comment faire pour faire un code complet
-        $code = $reservation->getNumberofticket();
+        $code = $reservation->getPrice();
         $reservation->setPrice($total)->setPayment($payment)->setCode($code);
+        // On boucle sur les tickets pour les lier à la reservation
         foreach ($tickets as $ticket){$reservation->addTicket($ticket);}
         return $reservation;
 
@@ -47,14 +48,11 @@ class BookingManager
         $total = 0;
         foreach($tickets as $ticket) {
             $total += $this->calculPriceTicket($ticket);
-
         }
         return $total;
     }
 
-
     const REDUCE_PRICE = 10;
-
 
     public function calculPriceTicket($ticket)
     {

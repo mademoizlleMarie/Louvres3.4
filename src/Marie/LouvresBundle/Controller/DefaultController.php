@@ -63,7 +63,7 @@ class DefaultController extends Controller
         $bookingManager = $this->get('bookingManager');
 
         $reservation = $bookingManager->getReservation();
-        var_dump($reservation);
+
         $form = $this->get('form.factory')->create(reservationTicketType::class,$reservation);
 
         if ($request->isMethod('POST'))
@@ -75,6 +75,9 @@ class DefaultController extends Controller
 
                 $em = $this->getDoctrine()->getManager();
                 $reservation = $bookingManager->updateBooking($reservation);
+                var_dump($reservation);
+
+
                 $em->persist($reservation);
                 $em->flush();
 
