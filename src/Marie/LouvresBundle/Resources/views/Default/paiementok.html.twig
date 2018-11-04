@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig'%}
+
+{% block head %}
+
+    <title> {{ "Payment" | trans }} </title>
+
+{% endblock %}
+
+{% block body %}
+
+    Votre réservation est ok. attention un e-mail vous a été envoyé à l'adresse {{ reservation.email}}
+{% endblock %}

@@ -75,9 +75,6 @@ class DefaultController extends Controller
 
                 $em = $this->getDoctrine()->getManager();
                 $reservation = $bookingManager->updateBooking($reservation);
-                var_dump($reservation);
-
-
                 $em->persist($reservation);
                 $em->flush();
 
@@ -87,7 +84,6 @@ class DefaultController extends Controller
         return $this->render('@MarieLouvres/Default/reservation.html.twig', array(
             'form' => $form->createView(), "reservation"=>$reservation
         ));
-
      }
 
 
@@ -97,13 +93,11 @@ class DefaultController extends Controller
     public function paiementAction(Request $request)
     {
         $reservation = new reservation();
-        $bookingManager = $this->get('bookingManager');
 
+        $bookingManager = $this->get('bookingManager');
         $reservation = $bookingManager->getReservation();
 
         $form = $this->get('form.factory')->create(reservationType::class,$reservation);
-        var_dump($reservation);
-
 
         if ($request->isMethod('POST'))
         {
@@ -124,4 +118,44 @@ class DefaultController extends Controller
         ));
 
     }
+
+    /**
+     * @Route(
+     *     "/checkout",
+     *     name="order_checkout",
+     *     methods="POST"
+     * )
+     */
+    public function checkoutAction(Request $request)
+
+    {
+        $reservation = new reservation();
+        $bookingManager = $this->get('bookingManager');
+        $reservation = $bookingManager->getReservation();
+
+        \Stripe\Stripe::setApiKey("sk_test_nMBC4BR6phi8eDmrme0Diadk");
+
+        // Get the credit card details submitted by the form
+        $token = $_POST['stripeToken'];
+
+        // Create a charge: this will charge the user's card
+        try {
+            $charge = \Stripe\Charge::create(array(
+                "amount" => $reservation->getPrice()*100, // Amount in cents
+                "currency" => "eur",
+                "source" => $token,
+                "description" => "Paiement Stripe - OpenClassrooms Exemple"
+            ));
+            $this->addFlash("success","Bravo ça marche !");
+            return $this->render('@MarieLouvres/Default/paiementok.html.twig',array(
+               "reservation"=>$reservation));
+        } catch(\Stripe\Error\Card $e) {
+
+            $this->addFlash("error","Snif ça marche pas :(");
+            return $this->render('@MarieLouvres/Default/paiementko.html.twig');
+            // The card has been declined
+        }
+    }
+
+
 }

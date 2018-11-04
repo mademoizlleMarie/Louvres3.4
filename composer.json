@@ -21,6 +21,7 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^5.0.0",
+        "stripe/stripe-php": "^6.20",
         "symfony/dependency-injection": "^3.4",
         "symfony/monolog-bundle": "^3.1.0",
         "symfony/polyfill-apcu": "^1.0",
@@ -62,5 +63,6 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": null
-    }
+    },
+    "stripe/stripe-php": "3.*"
 }

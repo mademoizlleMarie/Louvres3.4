@@ -8,6 +8,37 @@
 
 {% block body %}
 
-    le montant est de {{ reservation.price}} €
 
+
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                <h1><span>Récapitulatif de votre réservation</span></h1>
+            </div>
+            {#{% for ticket in tickets %}
+            {{ ticket.name }}
+            {% endfor %} #}
+
+            <p>
+                le montant total est de {{ reservation.price}} €
+            </p>
+            <div id="status">
+
+                <form action="{{ path('order_checkout') }}" method="POST">
+                    <script
+                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="pk_test_6anR8urJMltszMf5gtS3unhT"
+                            data-amount="{{ reservation.price }}"
+                            data-name="Musée du Louvre"
+                            data-description="Réservation de billets"
+                            data-label="Payer"
+                            data-locale="auto"
+                            data-currency="eur">
+                    </script>
+                </form>
+                </p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
