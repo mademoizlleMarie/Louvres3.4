@@ -105,10 +105,7 @@ class DefaultController extends Controller
 
             if ($form->isValid())
             {
-                //$em = $this->getDoctrine()->getManager();
-                //$reservation = $bookingManager->updateBooking($reservation);
-                //$em->persist($reservation);
-                //$em->flush();
+
 
                 return new RedirectResponse($this->generateUrl('paiement'));
             }
@@ -147,14 +144,22 @@ class DefaultController extends Controller
                 "description" => "Paiement Stripe - OpenClassrooms Exemple"
             ));
             $this->addFlash("success","Bravo ça marche !");
+    // ---------------------------------------------------------------revoir cette partie fonctionne pas
+            $em = $this->getDoctrine()->getManager();
+            $reservation = $bookingManager->paiementBooking($reservation);
+            $em->persist($reservation);
+            $em->flush();
+      //-------------------------------------------------------------------------------
             return $this->render('@MarieLouvres/Default/paiementok.html.twig',array(
                "reservation"=>$reservation));
         } catch(\Stripe\Error\Card $e) {
 
             $this->addFlash("error","Snif ça marche pas :(");
-            return $this->render('@MarieLouvres/Default/paiementko.html.twig');
+            return $this->redirectToRoute("paiement");
             // The card has been declined
         }
+
+
     }
 
 
