@@ -3,7 +3,7 @@
 namespace Marie\LouvresBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * ticket
  *
@@ -20,16 +20,11 @@ class ticket
      */
     private $reservation;
 
-    /*/**
-     * @ORM\ManyToOne(targetEntity="Marie\LouvresBundle\Entity\country", inversedBy="tickets",cascade = {"persist"})
-     *
-     *
-     */
-
     /**
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
+     * @Assert\Type("string")
      */
     private $country;
 
@@ -46,6 +41,7 @@ class ticket
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\Length(min = 2,minMessage = "Your first name must be at least {{ limit }} characters long")
      */
     private $name;
 
@@ -53,6 +49,7 @@ class ticket
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255)
+     * @Assert\Length(min = 2,minMessage = "Your first name must be at least {{ limit }} characters long")
      */
     private $firstname;
 
@@ -60,6 +57,7 @@ class ticket
      * @var \DateTime
      *
      * @ORM\Column(name="dateofbirth", type="datetime")
+     * @Assert\DateTime()
      */
     private $dateofbirth;
 
@@ -67,6 +65,7 @@ class ticket
      * @var bool
      *
      * @ORM\Column(name="reduced", type="boolean")
+     * @Assert\Type("bool")
      */
     private $reduced;
 
@@ -74,6 +73,7 @@ class ticket
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255)
+     * @Assert\Type("string")
      */
     private $description;
 

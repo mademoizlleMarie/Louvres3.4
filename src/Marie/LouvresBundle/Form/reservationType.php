@@ -23,7 +23,7 @@ class reservationType extends AbstractType
     {
         $builder
 
-           ->add('code',IntegerType::class )
+           ->add('code',TextType::class )
            ->add('numberofticket',IntegerType::class )
            ->add('date',DateType::class,
                array(

@@ -46,7 +46,7 @@ class DefaultController extends Controller
                 // On redirige vers la page de réservation
                 return new RedirectResponse($this->generateUrl('reservation'));
             }
-            var_dump($reservation);
+
         }
         // À ce stade, le formulaire n'est pas valide car :
         // - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
@@ -77,6 +77,9 @@ class DefaultController extends Controller
                 $reservation = $bookingManager->updateBooking($reservation);
                 $em->persist($reservation);
                 $em->flush();
+                $id = $reservation->getId();
+                $bookingManager->setReservationId($id);
+
 
                 return new RedirectResponse($this->generateUrl('paiement'));
             }
@@ -92,10 +95,15 @@ class DefaultController extends Controller
      */
     public function paiementAction(Request $request)
     {
-        $reservation = new reservation();
 
+        //je recupere l'id de mon objet reservation qui est en session
         $bookingManager = $this->get('bookingManager');
-        $reservation = $bookingManager->getReservation();
+        $id = $bookingManager->getReservationId();
+
+        // je recupere la reservation en bdd en rapport à l'id
+        $em = $this->getDoctrine()->getManager();
+       $repository = $em->getRepository(Reservation::class);
+       $reservation = $repository->find($id);
 
         $form = $this->get('form.factory')->create(reservationType::class,$reservation);
 
@@ -126,7 +134,7 @@ class DefaultController extends Controller
     public function checkoutAction(Request $request)
 
     {
-        $reservation = new reservation();
+
         $bookingManager = $this->get('bookingManager');
         $reservation = $bookingManager->getReservation();
 
@@ -137,7 +145,7 @@ class DefaultController extends Controller
 
         // Create a charge: this will charge the user's card
         try {
-            $charge = \Stripe\Charge::create(array(
+             \Stripe\Charge::create(array(
                 "amount" => $reservation->getPrice()*100, // Amount in cents
                 "currency" => "eur",
                 "source" => $token,
@@ -145,10 +153,14 @@ class DefaultController extends Controller
             ));
             $this->addFlash("success","Bravo ça marche !");
     // ---------------------------------------------------------------revoir cette partie fonctionne pas
-            $em = $this->getDoctrine()->getManager();
-            $reservation = $bookingManager->paiementBooking($reservation);
-            $em->persist($reservation);
-            $em->flush();
+            // le paiement est valide, on la stocke en session
+           //$bookingManager->update($id);
+
+
+            //$em = $this->getDoctrine()->getManager();
+            //$reservation = $bookingManager->paiementBooking($reservation);
+            //$em->persist($reservation);
+            //$em->flush();
       //-------------------------------------------------------------------------------
             return $this->render('@MarieLouvres/Default/paiementok.html.twig',array(
                "reservation"=>$reservation));

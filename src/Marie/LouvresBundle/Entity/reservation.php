@@ -4,7 +4,7 @@ namespace Marie\LouvresBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraint as Assert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * reservation
@@ -30,10 +30,10 @@ class reservation
     private $id;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="code", type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="code", type="string")
+     * @Assert\Type("string")
      */
     private $code;
 
@@ -41,15 +41,15 @@ class reservation
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime", nullable=true)
-     *
+     * @Assert\DateTime()
      */
     private $date;
 
     /**
      * @var  int
      *
-     * * @ORM\Column(name="numberofticket", type="integer")
-     *
+     * @ORM\Column(name="numberofticket", type="integer")
+     * @Assert\NotNull()
      */
     private $numberofticket;
 
@@ -57,6 +57,7 @@ class reservation
      * @var float
      *
      * @ORM\Column(name="price", type="float")
+     * @Assert\Type("float")
      */
 
     private $price;
@@ -65,6 +66,7 @@ class reservation
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255,nullable=true)
+     * @Assert\Length(min = 2,minMessage = "Your first name must be at least {{ limit }} characters long")
      */
     private $name;
 
@@ -72,6 +74,7 @@ class reservation
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email()
      */
     private $email;
 
@@ -79,6 +82,7 @@ class reservation
      * @var bool
      *
      * @ORM\Column(name="payment", type="boolean")
+     * @Assert\Type("bool")
      */
     private $payment;
 
@@ -104,21 +108,17 @@ class reservation
     /**
      * Set code
      *
-     * @param integer $code
-     *
-     * @return reservation
-     */
+     * @param string $code
+    */
     public function setCode($code)
     {
         $this->code = $code;
-
-        return $this;
     }
 
     /**
      * Get code
      *
-     * @return int
+     * @return string
      */
     public function getCode()
     {
@@ -281,7 +281,7 @@ class reservation
      */
     public function addTicket(ticket $ticket)
     {
-        $this->tickets[] = $ticket;
+        $this->tickets[] = $ticket; //   montrer à sandy il manquait cette ligne pour bien lié les tickets à la réservation
         // on lie le ticket à la réservation
         $ticket->setReservation($this);
 
