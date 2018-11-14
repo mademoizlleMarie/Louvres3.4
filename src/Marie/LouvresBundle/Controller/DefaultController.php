@@ -95,15 +95,17 @@ class DefaultController extends Controller
      */
     public function paiementAction(Request $request)
     {
+        $bookingManager = $this->get('bookingManager');
+        $reservation = $bookingManager->getReservation();
 
         //je recupere l'id de mon objet reservation qui est en session
-        $bookingManager = $this->get('bookingManager');
-        $id = $bookingManager->getReservationId();
+        //$bookingManager = $this->get('bookingManager');
+        //$id = $bookingManager->getReservationId();
 
         // je recupere la reservation en bdd en rapport à l'id
-        $em = $this->getDoctrine()->getManager();
-       $repository = $em->getRepository(Reservation::class);
-       $reservation = $repository->find($id);
+        //$em = $this->getDoctrine()->getManager();
+        //$repository = $em->getRepository(Reservation::class);
+        //$reservation = $repository->find($id);
 
         $form = $this->get('form.factory')->create(reservationType::class,$reservation);
 

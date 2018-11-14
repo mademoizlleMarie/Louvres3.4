@@ -11,13 +11,14 @@ use Marie\LouvresBundle\Entity\ticket;
 class BookingManager
 {
     private $session;
+    private $em;
 
 
     //créez une __construct()méthode avec un $sessionargument qui possède l'indicateur de type (chemin d'accès). Définissez cette $sessionpropriété sur une nouvelle propriété et utilisez-la plus tard
-    public function __construct( SessionInterface $session) //EntityManagerInterface $em) // injecter l'entity manager
+    public function __construct( SessionInterface $session, EntityManagerInterface $em) // injecter l'entity manager
     {
         $this->session = $session;
-        //$this->em = $entityManager;
+        $this->em = $em;
     }
 
     // mettre le chemin de l'entité permet de typer la variable = c'est un objet de type reservation
@@ -27,15 +28,19 @@ class BookingManager
 
     }
 
-
-
     public function getReservation()
     {
-
-        //verifier si reservationId existe si il existe je fais un find dans la bdd via doctrine
-        // sil n'existe pas :
-
+        // Je recupere la valeur de la methode dans l'objet booking manager et vérifie que la valeur est null
+        if ($this->getReservationId() === null) {
             return $this->session->get('reservation');
+        }
+
+        else {   //verifier si reservationId existe si il existe je fais un find dans la bdd via doctrine
+            // sil n'existe pas :
+
+            $id = $this->getReservationId();
+            return $this->em->getRepository(ReservationRepository::class)->find($id);
+        }
     }
 
     public function updateBooking(\Marie\LouvresBundle\Entity\reservation $reservation)
