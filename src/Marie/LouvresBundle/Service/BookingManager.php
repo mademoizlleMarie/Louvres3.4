@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Marie\LouvresBundle\Repository\ReservationRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Marie\LouvresBundle\Entity\ticket;
+use Marie\LouvresBundle\Entity\reservation;
 
 class BookingManager
 {
@@ -30,17 +31,21 @@ class BookingManager
 
     public function getReservation()
     {
-        // Je recupere la valeur de la methode dans l'objet booking manager et vérifie que la valeur est null
-        if ($this->getReservationId() === null) {
-            return $this->session->get('reservation');
-        }
+        // Je recupere la valeur de la methode getReservationId dans l'objet booking manager et vérifie que la valeur est null
+        /*if ( ($id = $this->getReservationId() ) == !null)
 
-        else {   //verifier si reservationId existe si il existe je fais un find dans la bdd via doctrine
-            // sil n'existe pas :
-
+        {
             $id = $this->getReservationId();
-            return $this->em->getRepository(ReservationRepository::class)->find($id);
+            var_dump($id);
+
+            return $this->em->getRepository(Reservation::class)->find($id);
         }
+
+        else {  //sinon je fais un find dans la bdd via doctrine*/
+
+            return $this->session->get('reservation');
+
+       // }
     }
 
     public function updateBooking(\Marie\LouvresBundle\Entity\reservation $reservation)
@@ -107,7 +112,7 @@ class BookingManager
     public function getReservationId()
     {
        $id = $this->session->get('reservationId');
-        return $id;
+       return $id;
     }
 
 }

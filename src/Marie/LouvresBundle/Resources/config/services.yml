@@ -1,4 +1,4 @@
-services:
+#services:
 #    marie_louvres.example:
 #        class: Marie\LouvresBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
@@ -7,4 +7,5 @@ services:
         class: Marie\LouvresBundle\Service\BookingManager
 
         #revoir pk c'est écrit de cette manière ca depend de la version de symfony
-        arguments: ['@session']
+        arguments:
+          ['@session','@doctrine.orm.entity_manager']
