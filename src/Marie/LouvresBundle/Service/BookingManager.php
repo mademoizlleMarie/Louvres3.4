@@ -2,11 +2,8 @@
 
 namespace Marie\LouvresBundle\Service;
 
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Marie\LouvresBundle\Repository\ReservationRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Marie\LouvresBundle\Entity\ticket;
 use Marie\LouvresBundle\Entity\reservation;
 
 class BookingManager
@@ -18,7 +15,7 @@ class BookingManager
     //créez une __construct()méthode avec un $sessionargument qui possède l'indicateur de type (chemin d'accès). Définissez cette $sessionpropriété sur une nouvelle propriété et utilisez-la plus tard
     public function __construct( SessionInterface $session, EntityManagerInterface $em) // injecter l'entity manager
     {
-        $this->session = $session;
+       $this->session = $session;
        $this->em = $em;
     }
 
@@ -32,11 +29,10 @@ class BookingManager
 
     public function getReservation()
     {
-        // Je recupere la valeur de la methode getReservationId dans l'objet booking manager et vérifie que la valeur est null
+        // Je recupere la valeur de la methode getReservationId dans l'objet booking manager et vérifie que la valeur existe
         if ( $id = $this->getReservationId())
 
         {
-
             return $this->em->getRepository(Reservation::class)->find($id);
         }
 
@@ -116,7 +112,6 @@ class BookingManager
         $em = $this->em;
         $em->persist($reservation);
         $em->flush();
-
     }
 
 }

@@ -3,7 +3,6 @@
 namespace Marie\LouvresBundle\Form;
 
 use Doctrine\ORM\Mapping\Entity;
-use Marie\LouvresBundle\Entity\country;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -26,15 +25,6 @@ class ticketType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('firstname', TextType::class)
-          /*  ->add('country', EntityType::class,
-                array("class" => 'MarieLouvresBundle:country',
-                'choice_label' => 'country')
-
-
-
-                )*/
-
-
             ->add('dateofbirth',DateType::class,
                 array(
                     'widget'=> 'single_text',

@@ -138,7 +138,7 @@ class DefaultController extends Controller
     {
         $bookingManager = $this->get('bookingManager');
         $reservation = $bookingManager->getReservation();
-        var_dump($reservation);
+
 
         \Stripe\Stripe::setApiKey("sk_test_nMBC4BR6phi8eDmrme0Diadk");
 
@@ -157,8 +157,6 @@ class DefaultController extends Controller
 
             //je met à jour le paiement de la reservation en cours
              $bookingManager->payementValide();
-
-
 
             return $this->render('@MarieLouvres/Default/paiementok.html.twig',array(
                "reservation"=>$reservation));
