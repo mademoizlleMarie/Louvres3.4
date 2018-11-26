@@ -13,11 +13,36 @@
     <div id="wrapper">
         <div id="container">
             <div id="welcome">
-                <h1><span>Récapitulatif de votre réservation</span></h1>
+                <h3><span>Récapitulatif de votre réservation</span></h3>
             </div>
-            <p>
-                le montant total est de {{ reservation.price}} €
-            </p>
+            <p> Nous vous remercions de bien vouloir vérifier les informations ci dessous avant de payer</p>
+            <div>
+                <table>
+                    <tr>
+                        <td>Date de Visite: </td>
+                        <td>{{ reservation.date | date ('d/m/Y') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Nom: </td>
+                        <td>{{ reservation.name |upper }} </td>
+                    </tr>
+                    <tr>
+                        <td>Email de contact: </td>
+                        <td>{{ reservation.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Nombre de billet(s):</td>
+                        <td>{{ reservation.numberofticket }}</td>
+
+                    </tr>
+                    <tr>
+                        <td> Le montant à payer est de : (en euro)</td>
+                        <td>{{ reservation.price }} .00€</td>
+
+                    </tr>
+
+                </table>
+            </div>
             <div id="status">
 
                 <form action="{{ path('order_checkout') }}" method="POST">

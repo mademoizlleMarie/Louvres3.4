@@ -157,6 +157,8 @@ class DefaultController extends Controller
 
             //je met à jour le paiement de la reservation en cours
              $bookingManager->payementValide();
+                 //->mailerAction();
+
 
             return $this->render('@MarieLouvres/Default/paiementok.html.twig',array(
                "reservation"=>$reservation));

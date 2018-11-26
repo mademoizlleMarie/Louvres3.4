@@ -3,8 +3,10 @@
 namespace Marie\LouvresBundle\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Marie\LouvresBundle\Entity\ticket;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Marie\LouvresBundle\Entity\reservation;
+
 
 class BookingManager
 {
@@ -20,7 +22,7 @@ class BookingManager
     }
 
     // mettre le chemin de l'entité permet de typer la variable = c'est un objet de type reservation
-    public function initBooking(\Marie\LouvresBundle\Entity\reservation $reservation)
+    public function initBooking(reservation $reservation)
     {
         $this->session->remove("reservationId");
         $this->session->set('reservation', $reservation);
@@ -43,7 +45,7 @@ class BookingManager
         }
     }
 
-    public function updateBooking(\Marie\LouvresBundle\Entity\reservation $reservation)
+    public function updateBooking(reservation $reservation)
     {
         // recupérer les billets
         $tickets = $reservation->getTickets();
@@ -93,7 +95,7 @@ class BookingManager
         //Je recupere l'objet session de symfony et j'affecte la valeur reservationId à l'attribut
         $this->session->set('reservationId', $id);
 
-        // reviens au même que :
+        // revient au même que :
         //$session = $this->session;
         //$session->set('reservationId',$id);
 
@@ -113,6 +115,18 @@ class BookingManager
         $em->persist($reservation);
         $em->flush();
     }
+
+    public function mailerAction(reservation $reservation, \Swift_Mailer $mailer)
+    {
+        $message = (new \Swift_Message())
+            ->setFrom('sylvestre.marie@gmail.com')
+            ->setTo($reservation->getEmail())
+            ->setSubject('Votre e-billet pour l\'entrée du musée du Louvre')
+            ->setBody($this->renderView('@MarieLouvres/Default/mail.html.twig',['tickets' => $reservation->getTickets()]),'text/html');
+
+        $mailer->send($message);
+    }
+
 
 }
 
