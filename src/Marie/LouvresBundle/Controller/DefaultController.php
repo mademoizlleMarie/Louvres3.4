@@ -15,6 +15,7 @@ use Marie\LouvresBundle\Service\BookingManager;
 
 
 
+
 class DefaultController extends Controller
 {
     /**
@@ -97,15 +98,15 @@ class DefaultController extends Controller
         $bookingManager = $this->get('bookingManager');
         $reservation = $bookingManager->getReservation();
 
-       /* //je recupere l'id de mon objet reservation qui est en session
-        $bookingManager = $this->get('bookingManager');
+       //je recupere l'id de mon objet reservation qui est en session
+        /*$bookingManager = $this->get('bookingManager');
         $id = $bookingManager->getReservationId();
 
         // je recupere la reservation en bdd en rapport à l'id
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository(Reservation::class);
-        $reservation = $repository->find($id);*/
-
+        $reservation = $repository->find($id);
+        var_dump($reservation);*/
 
         $form = $this->get('form.factory')->create(reservationType::class,$reservation);
 
@@ -134,11 +135,10 @@ class DefaultController extends Controller
      * )
      */
     public function checkoutAction(Request $request)
-
     {
-
         $bookingManager = $this->get('bookingManager');
         $reservation = $bookingManager->getReservation();
+        var_dump($reservation);
 
         \Stripe\Stripe::setApiKey("sk_test_nMBC4BR6phi8eDmrme0Diadk");
 
@@ -154,16 +154,12 @@ class DefaultController extends Controller
                 "description" => "Paiement Stripe - OpenClassrooms Exemple"
             ));
             $this->addFlash("success","Bravo ça marche !");
-    // ---------------------------------------------------------------revoir cette partie fonctionne pas
-            // le paiement est valide, on la stocke en session
-           //$bookingManager->update($id);
+
+            //je met à jour le paiement de la reservation en cours
+             $bookingManager->payementValide();
 
 
-            //$em = $this->getDoctrine()->getManager();
-            //$reservation = $bookingManager->paiementBooking($reservation);
-            //$em->persist($reservation);
-            //$em->flush();
-      //-------------------------------------------------------------------------------
+
             return $this->render('@MarieLouvres/Default/paiementok.html.twig',array(
                "reservation"=>$reservation));
         } catch(\Stripe\Error\Card $e) {
@@ -175,6 +171,7 @@ class DefaultController extends Controller
 
 
     }
+
 
 
 }

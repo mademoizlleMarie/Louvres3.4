@@ -19,12 +19,13 @@ class BookingManager
     public function __construct( SessionInterface $session, EntityManagerInterface $em) // injecter l'entity manager
     {
         $this->session = $session;
-        $this->em = $em;
+       $this->em = $em;
     }
 
     // mettre le chemin de l'entité permet de typer la variable = c'est un objet de type reservation
     public function initBooking(\Marie\LouvresBundle\Entity\reservation $reservation)
     {
+        $this->session->remove("reservationId");
         $this->session->set('reservation', $reservation);
 
     }
@@ -32,11 +33,9 @@ class BookingManager
     public function getReservation()
     {
         // Je recupere la valeur de la methode getReservationId dans l'objet booking manager et vérifie que la valeur est null
-        /*if ( ($id = $this->getReservationId() ) == !null)
+        if ( $id = $this->getReservationId())
 
         {
-            $id = $this->getReservationId();
-            var_dump($id);
 
             return $this->em->getRepository(Reservation::class)->find($id);
         }
@@ -45,7 +44,7 @@ class BookingManager
 
             return $this->session->get('reservation');
 
-       // }
+        }
     }
 
     public function updateBooking(\Marie\LouvresBundle\Entity\reservation $reservation)
@@ -59,19 +58,14 @@ class BookingManager
         // ---------------------------------------- le code du billet revoir comment faire pour faire un code complet
         $code = $reservation->getNumberofticket().$reservation->getName().date("YmdHis");//streplace pour enlever les espaces
         var_dump($code);
-
+        //J'affecte la valeur à la proprieté $reservation
         $reservation->setPrice($total)->setPayment($payment)->setCode($code);
         // On boucle sur les tickets pour les lier à la reservation
         foreach ($tickets as $ticket){$reservation->addTicket($ticket);}
         return $reservation;
 
     }
-    public function paiementBooking(\Marie\LouvresBundle\Entity\reservation $reservation)
-    {
-        $payment = $reservation->getPayment() === true;
-        $reservation->setPayment($payment);
-        return $reservation;
-    }
+
 
     public function calculPriceTotal($tickets)
     {
@@ -111,8 +105,18 @@ class BookingManager
 
     public function getReservationId()
     {
-       $id = $this->session->get('reservationId');
-       return $id;
+        if ($id = $this->session->get('reservationId')) return $id;
+       return null;
+    }
+
+    public function payementValide()
+    {
+        $reservation = $this->getReservation();
+        $reservation->setPayment(1);
+        $em = $this->em;
+        $em->persist($reservation);
+        $em->flush();
+
     }
 
 }
