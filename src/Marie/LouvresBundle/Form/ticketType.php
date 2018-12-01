@@ -15,6 +15,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
+
 class ticketType extends AbstractType
 {
     /**
@@ -33,7 +34,6 @@ class ticketType extends AbstractType
                     'attr' => ['class' => 'js-datepicker']
                 ))
             ->add('country',CountryType::class)
-
             ->add('reduced', CheckboxType::class,array('required' => false))
             ->add('description', ChoiceType::class, array('choices'=> array('day ticket' =>'day ticket','half day ticket' =>'half day ticket')));
 

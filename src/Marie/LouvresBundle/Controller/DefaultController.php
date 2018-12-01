@@ -19,7 +19,7 @@ use Marie\LouvresBundle\Service\BookingManager;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="accueil")
+     * @Route("/")
      */
     public function indexAction(Request $request)
     {
