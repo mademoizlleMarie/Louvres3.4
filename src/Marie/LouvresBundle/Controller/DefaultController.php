@@ -65,24 +65,18 @@ class DefaultController extends Controller
 
         $reservation = $bookingManager->getReservation();
 
-        $form = $this->get('form.factory')->create(reservationTicketType::class,$reservation);
+        $form = $this->get('form.factory')->create(reservationTicketType::class, $reservation);
+        $form->handleRequest($request);
 
-        if ($request->isMethod('POST'))
+        if ($request->isMethod('POST') && $form->isValid())
         {
-            $form->handleRequest($request);
+            $em = $this->getDoctrine()->getManager();
+            $reservation = $bookingManager->updateBooking($reservation);
+            $em->persist($reservation);
+            $em->flush();
+            $bookingManager->setReservationId($reservation->getId());
 
-            if ($form->isValid())
-            {
-
-                $em = $this->getDoctrine()->getManager();
-                $reservation = $bookingManager->updateBooking($reservation);
-                $em->persist($reservation);
-                $em->flush();
-                $id = $reservation->getId();
-                $bookingManager->setReservationId($id);
-
-                return new RedirectResponse($this->generateUrl('paiement'));
-            }
+            return new RedirectResponse($this->generateUrl('paiement'));
         }
         return $this->render('@MarieLouvres/Default/reservation.html.twig', array(
             'form' => $form->createView(), "reservation"=>$reservation
@@ -98,28 +92,12 @@ class DefaultController extends Controller
         $bookingManager = $this->get('bookingManager');
         $reservation = $bookingManager->getReservation();
 
-       //je recupere l'id de mon objet reservation qui est en session
-        /*$bookingManager = $this->get('bookingManager');
-        $id = $bookingManager->getReservationId();
-
-        // je recupere la reservation en bdd en rapport à l'id
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository(Reservation::class);
-        $reservation = $repository->find($id);
-        var_dump($reservation);*/
-
         $form = $this->get('form.factory')->create(reservationType::class,$reservation);
+        $form->handleRequest($request);
 
-        if ($request->isMethod('POST'))
+        if ($request->isMethod('POST') && $form->isValid())
         {
-            $form->handleRequest($request);
-
-            if ($form->isValid())
-            {
-
-
-                return new RedirectResponse($this->generateUrl('paiement'));
-            }
+           return new RedirectResponse($this->generateUrl('paiement'));
         }
         return $this->render('@MarieLouvres/Default/paiement.html.twig', array(
             'form' => $form->createView(),"reservation"=>$reservation
@@ -138,8 +116,7 @@ class DefaultController extends Controller
     {
         $bookingManager = $this->get('bookingManager');
         $reservation = $bookingManager->getReservation();
-
-
+        
         \Stripe\Stripe::setApiKey("sk_test_nMBC4BR6phi8eDmrme0Diadk");
 
         // Get the credit card details submitted by the form
@@ -157,8 +134,6 @@ class DefaultController extends Controller
 
             //je met à jour le paiement de la reservation en cours
              $bookingManager->payementValide();
-                 //->mailerAction();
-
 
             return $this->render('@MarieLouvres/Default/paiementok.html.twig',array(
                "reservation"=>$reservation));
