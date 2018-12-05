@@ -13,6 +13,22 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ticket
 {
+    
+     private $params = [
+        ['from' => 0, 'to' => 4, 'category' => 'BABY'],
+        ['from' => 4, 'to' => 12, 'category' => 'CHILD'],
+        ['from' => 12, 'to' => 60, 'category' => 'NORMAL'],
+        ['from' => 60, 'to' => 200, 'category' => 'SENIOR'],
+    ];
+
+    private $prices = [
+        'BABY' => 0,
+        'CHILD' => 8,
+        'NORMAL' => 16,
+        'SENIOR' => 12,
+    ];
+    
+    
     /**
      * @ORM\ManyToOne(targetEntity="Marie\LouvresBundle\Entity\reservation", inversedBy="tickets", cascade = {"persist"})
      *
@@ -168,19 +184,6 @@ class ticket
         return $diff;
 
     }
-    private $params = [
-        ['from' => 0, 'to' => 4, 'category' => 'BABY'],
-        ['from' => 4, 'to' => 12, 'category' => 'CHILD'],
-        ['from' => 12, 'to' => 60, 'category' => 'NORMAL'],
-        ['from' => 60, 'to' => 200, 'category' => 'SENIOR'],
-    ];
-
-    private $prices = [
-        'BABY' => 0,
-        'CHILD' => 8,
-        'NORMAL' => 16,
-        'SENIOR' => 12,
-    ];
 
     // modifié
     public function getPrice()
