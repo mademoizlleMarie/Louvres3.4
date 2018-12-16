@@ -5,6 +5,12 @@ namespace Marie\LouvresBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Marie\LouvresBundle\Validator\Constraints\ConstraintTicketJourFerie;
+use Marie\LouvresBundle\Validator\Constraints\ConstraintTicket;
+use Marie\LouvresBundle\Validator\Constraints\ConstraintTicketMardi;
+
+
+
 
 /**
  * reservation
@@ -14,11 +20,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class reservation
 {
-    // l'entité reservation porte la relation One (reservation) to Many (tickets) afin de permettre d'avoir un tableau d'objet de ticket
     /**
      * @ORM\OneToMany(targetEntity="Marie\LouvresBundle\Entity\ticket", mappedBy="reservation",cascade={"persist"})
     */
-    private $tickets; // une réservation est lié à plusieurs tickets
+    private $tickets;
 
     /**
      * @var int
@@ -41,7 +46,11 @@ class reservation
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime", nullable=true)
-     * @Assert\DateTime()
+     * @Assert\Date(message = "Vous devez entrer une date valide.")
+     * @ConstraintTicket()
+     * @ConstraintTicketJourFerie()
+     * @ConstraintTicketMardi()
+     *
      */
     private $date;
 
@@ -49,7 +58,16 @@ class reservation
      * @var  int
      *
      * @ORM\Column(name="numberofticket", type="integer")
-     * @Assert\NotNull()
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 50,
+     *      minMessage = "Vous devez commander au moins {{ limit }} billet",
+     *      maxMessage = "Vous ne pouvez pas commander plus de {{ limit }} billets"),
+     *
+     * @Assert\Type(
+     *     type="integer",
+     *     message="Le nombre de billets entré doit être un chiffre.")
+     *
      */
     private $numberofticket;
 
@@ -66,7 +84,7 @@ class reservation
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255,nullable=true)
-     * @Assert\Length(min = 2,minMessage = "Your first name must be at least {{ limit }} characters long")
+     * @Assert\Length(min = 3 ,minMessage = "Votre prénom doit comporter au moins {{ limit }} caractères.")
      */
     private $name;
 
@@ -74,7 +92,11 @@ class reservation
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
-     * @Assert\Email()
+     *
+     * @Assert\Email(
+     *     message = "Votre Email '{{ value }}' n'est pas valide.",
+     *     checkMX = true)
+     *
      */
     private $email;
 
@@ -269,9 +291,6 @@ class reservation
         return $this->payment;
     }
 
-
-
-
     /**
      * Add ticket
      *
@@ -281,8 +300,7 @@ class reservation
      */
     public function addTicket(ticket $ticket)
     {
-        $this->tickets[] = $ticket; //   montrer à sandy il manquait cette ligne pour bien lié les tickets à la réservation
-        // on lie le ticket à la réservation
+        $this->tickets[] = $ticket;
         $ticket->setReservation($this);
 
         return $this;

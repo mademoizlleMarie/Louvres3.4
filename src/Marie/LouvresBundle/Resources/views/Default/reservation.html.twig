@@ -11,23 +11,11 @@
 {% block body %}
 
         <div class="well">
-
             {{ form_start(form,{'attr':{'class':'form-horizontal'}}) }}
-
-            {# Les erreurs générales du formulaire.#}
             {{ form_errors(form.tickets) }}
-
             {{ form_widget(form.tickets) }}
 
-            {# ticket : #}
-
-            {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
             {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
-
-            {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
-            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
-
-            {# Fermeture de la balise <form> du formulaire HTML #}
             {{ form_end(form) }}
         </div>
 
@@ -35,61 +23,27 @@
     <script type="text/javascript">
 
         var nbticket = {{ reservation.numberofticket }};
-        console.log(nbticket);
         $(document).ready(function() {
 
-            // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
             var $container = $('div#marie_louvresbundle_reservation_tickets');
-
-            // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
             var index = $container.find(':input').length;
-
-            // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
             if (index == 0) { for (var iter = 0; iter < nbticket ; iter++){
                 addTicket($container);
             }} else {
-                // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
                 $container.children('div').each(function() {
                     addDeleteLink($(this));
                 });
             }
-
-            // La fonction qui ajoute un formulaire CategoryType
             function addTicket($container) {
-                // Dans le contenu de l'attribut « data-prototype », on remplace :
-                // - le texte "__name__label__" qu'il contient par le label du champ
-                // - le texte "__name__" qu'il contient par le numéro du champ
-                var template = $container.attr('data-prototype')
+                 var template = $container.attr('data-prototype')
                     .replace(/__name__label__/g, 'Ticket n°' + (index+1))
                     .replace(/__name__/g,        index)
                 ;
-
-                // On crée un objet jquery qui contient ce template
                 var $prototype = $(template);
-
-                // On ajoute le prototype modifié à la fin de la balise <div>
                 $container.append($prototype);
-
-                // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
                 index++;
             }
 
-            // La fonction qui ajoute un lien de suppression d'une catégorie
-            function addDeleteLink($prototype) {
-                // Création du lien
-                var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
-
-                // Ajout du lien
-                $prototype.append($deleteLink);
-
-                // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
-                $deleteLink.click(function(e) {
-                    $prototype.remove();
-
-                    e.preventDefault(); // évite qu'un # apparaisse dans l'URL
-                    return false;
-                });
-            }
             $('.js-datepicker').datepicker(
                 {closeText: 'Fermer',
                     prevText: 'Précédent',
@@ -102,7 +56,11 @@
                     dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
                     weekHeader: 'Sem.',
                     dateFormat: 'dd-mm-yy',
-                    firstDay:1
+                    firstDay:1,
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: "-80:+0",
+                    dayRange:"+0"
                 }
             );
 

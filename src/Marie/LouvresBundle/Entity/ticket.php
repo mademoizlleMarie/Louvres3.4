@@ -24,7 +24,7 @@ class ticket
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
-     * @Assert\Type("string")
+     * @Assert\Type(type="string")
      */
     private $country;
 
@@ -41,7 +41,13 @@ class ticket
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Assert\Length(min = 2,minMessage = "Your first name must be at least {{ limit }} characters long")
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Votre nom doit comprendre au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne doit pas comprendre plus {{ limit }} caractères"
+     * )
      */
     private $name;
 
@@ -49,7 +55,13 @@ class ticket
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255)
-     * @Assert\Length(min = 2,minMessage = "Your first name must be at least {{ limit }} characters long")
+     *
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Votre prénom doit comprendre au moins {{ limit }} caractères",
+     *      maxMessage = "Votre prénom ne doit pas comprendre plus {{ limit }} caractères"
+     * )
      */
     private $firstname;
 
@@ -57,7 +69,9 @@ class ticket
      * @var \DateTime
      *
      * @ORM\Column(name="dateofbirth", type="datetime")
-     * @Assert\DateTime()
+     *
+     * @Assert\Date(message = "Vous devez entrer une date valide.")
+     *
      */
     private $dateofbirth;
 
@@ -182,13 +196,12 @@ class ticket
         'SENIOR' => 12,
     ];
 
-    // modifié
+
     public function getPrice()
     {
         $prices = $this->prices;
         $category = $this->getCategory();
         var_dump($category);
-        //if(key_exist($category, $prices) $result = $prices{$category}
         foreach ($prices as $key => $value)
         {
             if ($category == $key) $result = $value ;
@@ -200,7 +213,7 @@ class ticket
     public function getCategory()
     {
         $params = $this->params;
-        $age = $this->getAge(); // return 3 or 11
+        $age = $this->getAge();
         foreach($params as $param)
         {
             if( $age >= $param['from'] && $age < $param['to']) $category = $param['category'];
