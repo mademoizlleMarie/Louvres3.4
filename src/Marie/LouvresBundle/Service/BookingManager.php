@@ -16,6 +16,20 @@ class BookingManager
     
     const REDUCE_PRICE = 10;
 
+    private $params = [
+        ['from' => 0, 'to' => 4, 'category' => 'BABY'],
+        ['from' => 4, 'to' => 12, 'category' => 'CHILD'],
+        ['from' => 12, 'to' => 60, 'category' => 'NORMAL'],
+        ['from' => 60, 'to' => 200, 'category' => 'SENIOR'],
+    ];
+
+    private $prices = [
+        'BABY' => 0,
+        'CHILD' => 8,
+        'NORMAL' => 16,
+        'SENIOR' => 12,
+    ];
+
     public function __construct( SessionInterface $session, EntityManagerInterface $em) // injecter l'entity manager
     {
        $this->session = $session;
@@ -71,7 +85,7 @@ class BookingManager
         if($ticket->getReduced() === true) {
             $price = BookingManager::REDUCE_PRICE;
         } else { // standard price ticket
-            $price = $ticket->getPrice();
+            $price = $this->getPrice($ticket);
         }
 
         if($ticket->getDescription() === 'half day ticket') $price = $price/2;
@@ -110,6 +124,42 @@ class BookingManager
         $mailer->send($message);
     }
 
+
+
+    public function getPrice($category)
+    {
+        $prices = $this->prices;
+        $category = $this->getCategory($category);
+        var_dump($category);
+        foreach ($prices as $key => $value)
+        {
+            if ($category == $key) $result = $value ;
+        }
+
+        return $result;
+    }
+
+    public function getCategory($diff)
+    {
+        $params = $this->params;
+        $age = $this->getAge($diff);
+        foreach($params as $param)
+        {
+            if( $age >= $param['from'] && $age < $param['to']) $category = $param['category'];
+        }
+        var_dump($category);
+        return $category;
+    }
+
+    public function getAge($ticket)
+    {
+
+        $diff1 = date_diff(new \DateTime(),$ticket->getDateofbirth());
+        $diff = $diff1->format('%Y');
+        var_dump($diff);
+        return $diff;
+
+    }
 
 }
 

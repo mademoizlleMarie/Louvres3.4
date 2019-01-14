@@ -23,6 +23,9 @@
     <script type="text/javascript">
 
         var nbticket = {{ reservation.numberofticket }};
+
+
+
         $(document).ready(function() {
 
             var $container = $('div#marie_louvresbundle_reservation_tickets');
@@ -44,6 +47,8 @@
                 index++;
             }
 
+
+
             $('.js-datepicker').datepicker(
                 {closeText: 'Fermer',
                     prevText: 'Précédent',
@@ -60,7 +65,8 @@
                     changeMonth: true,
                     changeYear: true,
                     yearRange: "-80:+0",
-                    dayRange:"+0"
+                    dayRange:"+0",
+                    maxDate: new Date,
                 }
             );
 

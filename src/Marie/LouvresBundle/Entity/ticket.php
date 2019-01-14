@@ -4,6 +4,7 @@ namespace Marie\LouvresBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Marie\LouvresBundle\Validator\Constraints\ConstraintDateOfBirth;
 /**
  * ticket
  *
@@ -13,6 +14,15 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ticket
 {
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
     /**
      * @ORM\ManyToOne(targetEntity="Marie\LouvresBundle\Entity\reservation", inversedBy="tickets", cascade = {"persist"})
      *
@@ -27,15 +37,6 @@ class ticket
      * @Assert\Type(type="string")
      */
     private $country;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
 
     /**
      * @var string
@@ -69,8 +70,8 @@ class ticket
      * @var \DateTime
      *
      * @ORM\Column(name="dateofbirth", type="datetime")
-     *
      * @Assert\Date(message = "Vous devez entrer une date valide.")
+     * @ConstraintDateOfBirth()
      *
      */
     private $dateofbirth;
@@ -173,54 +174,7 @@ class ticket
         return $this->dateofbirth;
     }
 
-    public function getAge()
-    {
 
-        $diff1 = date_diff(new \DateTime(),$this->getDateofbirth());
-        $diff = $diff1->format('%Y');
-        var_dump($diff);
-        return $diff;
-
-    }
-    private $params = [
-        ['from' => 0, 'to' => 4, 'category' => 'BABY'],
-        ['from' => 4, 'to' => 12, 'category' => 'CHILD'],
-        ['from' => 12, 'to' => 60, 'category' => 'NORMAL'],
-        ['from' => 60, 'to' => 200, 'category' => 'SENIOR'],
-    ];
-
-    private $prices = [
-        'BABY' => 0,
-        'CHILD' => 8,
-        'NORMAL' => 16,
-        'SENIOR' => 12,
-    ];
-
-
-    public function getPrice()
-    {
-        $prices = $this->prices;
-        $category = $this->getCategory();
-        var_dump($category);
-        foreach ($prices as $key => $value)
-        {
-            if ($category == $key) $result = $value ;
-        }
-
-        return $result;
-    }
-
-    public function getCategory()
-    {
-        $params = $this->params;
-        $age = $this->getAge();
-        foreach($params as $param)
-        {
-            if( $age >= $param['from'] && $age < $param['to']) $category = $param['category'];
-        }
-        var_dump($category);
-        return $category;
-    }
 
     /**
      * Set reduced
@@ -309,6 +263,7 @@ class ticket
     {
         $this->country = $country;
     }
+
 
 
 }
